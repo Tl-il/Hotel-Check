@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "react-native.packagerPort": 8081,
+    "configurations": [
+        
+        {
+            "name": "Attach to packager",
+            "cwd": "${workspaceFolder}",
+            "type": "reactnative",
+            "request": "attach",
+            
+        },
+    ]
+}

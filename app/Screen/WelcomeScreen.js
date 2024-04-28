@@ -18,7 +18,7 @@ function WelcomeScreen(props) {
             <Button
         color="#FEFCFF"
         title="lets start"
-        onPress={() => this.move}/>
+        onPress={() => console.log("work")}/>
         </View>
         </View>
        
@@ -49,3 +49,6 @@ const styles = StyleSheet.create({
 })
 
 export default WelcomeScreen;
+
+//נשאר לבצע מעבר לאחר לחיצה על הכפתור למסך הבא 
+//לשנות את הכפתור למעוגל 

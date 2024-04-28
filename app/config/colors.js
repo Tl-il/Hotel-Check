@@ -1,7 +1,8 @@
 
 export default {
     backgroundcolor:'#e8e5dc',
-    primry:'#493d30',
+    primary:'#493d30',
     secondary:'#FEFCFF',
     black:'#000',
+    white:'#fff',
 }

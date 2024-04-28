@@ -8,25 +8,40 @@ import AppButton from './app/component/Button/AppButton';
 import colors from './app/config/colors';
 import AppText from './app/component/AppText';
 import LoginScreen from './app/Screen/LoginScreen';
+import Crad from './app/component/ Crad';
+import ListingDetiailsScreen from './app/Screen/ListingDetiailsScreen';
 
 
 
 
 export default function App() {
   return (
-   <View style={{
-    flex: 1,
-    justifyContent:'center',
-    alignItems:'center',
-    }}
-    >
-      <AppButton title="login" onPress={()=>console.log("work")}/>
-    </View>
+  //  <View style={{
+  //   flex: 1,
+  //   justifyContent:'center',
+  //   alignItems:'center',
+  //   }}
+  //   >
+  //     <AppButton title="login" onPress={()=>console.log("work")}/>
+  //   </View>
+
   // <ViewImageScreen></ViewImageScreen>
+
    //<WelcomeScreen></WelcomeScreen>
 
- //<LoginScreen></LoginScreen>
-    
+   //<LoginScreen></LoginScreen>
+
+  //  <View style={{
+  //     padding:20,
+  //     paddingTop:100
+  //   }}> 
+  //   <Crad
+  //   title={'hotel'}
+  //   subTitle={'nice'}
+  //   image={require("./app/assets/hotel2.png")}
+  // />
+  // </View>
+  <ListingDetiailsScreen></ListingDetiailsScreen>
   );
 }
 

@@ -1,35 +1,29 @@
-import React from 'react';
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
+import { View, Text, ImageBackground,StyleSheet } from 'react-native'
+import React from 'react'
+import AppButton from '../component/Button/AppButton'
 
-const TextInputExample = () => {
-  const [text, onChangeText] = React.useState('Useless Text');
-  const [number, onChangeNumber] = React.useState('');
-
+export default function LoginScreen() {
   return (
-    <SafeAreaView>
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeText}
-        value={text}
-      />
-      <TextInput
-        style={styles.input}
-        onChangeText={onChangeNumber}
-        value={number}
-        placeholder="useless placeholder"
-        keyboardType="numeric"
-      />
-    </SafeAreaView>
-  );
-};
+    <ImageBackground
+    style={styles.background}
+    source={require('../assets/logingpic.png')}>
+    <View style={styles.buttonContainer}>
+      <AppButton title="loging"/>
+      <AppButton title='register' color='backgroundcolor'/>
+    </View>
+    </ImageBackground>
+  )
+}
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+  background:{
+    flex:1
   },
-});
+  buttonContainer:{
+    padding:20,
+    width:'100%',
+    marginTop:'170%',
+    marginLeft:'25%',
 
-export default TextInputExample;
+  }
+})

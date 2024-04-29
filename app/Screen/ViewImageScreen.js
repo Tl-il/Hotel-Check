@@ -2,12 +2,17 @@ import { View, Text, Image, StyleSheet } from 'react-native'
 import React from 'react'
 import colors from '../config/colors';
 import AppText from '../component/AppText';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 export default function ViewImageScreen() {
     return (
         <View style={styles.container}>
-            <View style={styles.colseIcon}></View>
-            <View style={styles.deleteIcon}></View>
+            <View style={styles.colseIcon}>
+                <MaterialCommunityIcons name='close' color='white' size={35}/>
+            </View>
+            <View style={styles.deleteIcon}>
+                <MaterialCommunityIcons  name='trash-can-outline' color='white' size={35}/>
+            </View>
             <Image
                 style={styles.image}
                 source={require('../assets/welcom.png')} />
@@ -17,17 +22,11 @@ export default function ViewImageScreen() {
 }
 const styles = StyleSheet.create({
     colseIcon: {
-        width: 50,
-        height: 50,
-        backgroundColor: colors.primry,
         position: 'absolute',
         top: 45,
         left: 20,
     },
     deleteIcon: {
-        width: 50,
-        height: 50,
-        backgroundColor: colors.secondary,
         position: 'absolute',
         top: 45,
         right: 20,

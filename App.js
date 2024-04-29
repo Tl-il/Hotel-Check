@@ -10,7 +10,7 @@ import AppText from './app/component/AppText';
 import LoginScreen from './app/Screen/LoginScreen';
 import Crad from './app/component/ Crad';
 import ListingDetiailsScreen from './app/Screen/ListingDetiailsScreen';
-
+import MessagesScreen from './app/Screen/MessagesScreen';
 
 
 
@@ -25,23 +25,24 @@ export default function App() {
   //     <AppButton title="login" onPress={()=>console.log("work")}/>
   //   </View>
 
-  // <ViewImageScreen></ViewImageScreen>
+  //<ViewImageScreen></ViewImageScreen>
 
    //<WelcomeScreen></WelcomeScreen>
 
-   //<LoginScreen></LoginScreen>
+  // <LoginScreen></LoginScreen>
 
   //  <View style={{
   //     padding:20,
   //     paddingTop:100
   //   }}> 
   //   <Crad
-  //   title={'hotel'}
-  //   subTitle={'nice'}
+  //   title={'הילטון'}
+  //   subTitle={'1.5 km'}
   //   image={require("./app/assets/hotel2.png")}
   // />
   // </View>
-  <ListingDetiailsScreen></ListingDetiailsScreen>
+   <ListingDetiailsScreen></ListingDetiailsScreen>
+  //<MessagesScreen></MessagesScreen>
   );
 }
 

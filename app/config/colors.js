@@ -5,4 +5,5 @@ export default {
     secondary:'#FEFCFF',
     black:'#000',
     white:'#fff',
+    litegray:'#6e6969',
 }

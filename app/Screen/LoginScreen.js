@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground,StyleSheet } from 'react-native'
+import { View, Text, ImageBackground,StyleSheet,resizeMode } from 'react-native'
 import React from 'react'
 import AppButton from '../component/Button/AppButton'
 
@@ -9,7 +9,7 @@ export default function LoginScreen() {
     source={require('../assets/logingpic.png')}>
     <View style={styles.buttonContainer}>
       <AppButton title="loging"/>
-      <AppButton title='register' color='backgroundcolor'/>
+      <AppButton title='create accuont' color='backgroundcolor'/>
     </View>
     </ImageBackground>
   )
@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     width:'100%',
     marginTop:'170%',
     marginLeft:'25%',
+    
 
   }
 })

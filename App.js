@@ -27,11 +27,11 @@ export default function App() {
 
   //<ViewImageScreen></ViewImageScreen>
 
-   //<WelcomeScreen></WelcomeScreen>
+  //<WelcomeScreen></WelcomeScreen>
 
   // <LoginScreen></LoginScreen>
 
-  //  <View style={{
+  // <View style={{
   //     padding:20,
   //     paddingTop:100
   //   }}> 
@@ -41,8 +41,8 @@ export default function App() {
   //   image={require("./app/assets/hotel2.png")}
   // />
   // </View>
-   <ListingDetiailsScreen></ListingDetiailsScreen>
-  //<MessagesScreen></MessagesScreen>
+   //<ListingDetiailsScreen></ListingDetiailsScreen>
+  <MessagesScreen></MessagesScreen>
   );
 }
 

@@ -6,4 +6,5 @@ export default {
     black:'#000',
     white:'#fff',
     litegray:'#6e6969',
+    grayflash:'#f2f2f2',
 }

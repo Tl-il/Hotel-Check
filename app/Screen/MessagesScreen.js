@@ -1,6 +1,11 @@
-import React from 'react';
-import { FlatList, SafeAreaView } from 'react-native';
+import React, { useState } from 'react';
+import { FlatList, SafeAreaView,StyleSheet, View } from 'react-native';
 import ListItem from '../component/ListItem';
+import Screen from '../component/Screen';
+import Constants from 'expo-constants';
+import colors from '../config/colors';
+import Separator from '../component/Separator';
+//const[refreshing,setRefreshing]=useState(false);
 const messages=[
     {
         id:1,
@@ -17,7 +22,8 @@ const messages=[
 ]
 function MessagesScreen(props) {
     return (
-        <SafeAreaView>
+        <Screen> 
+        
        <FlatList
        data={messages}
        keyExtractor={messages=>messages.id.toString()}
@@ -25,9 +31,15 @@ function MessagesScreen(props) {
        title={item.title}
        subTitle={item.description}
        image={item.image}
-       /> }/>
-       </SafeAreaView>
+       onPress={()=>console.log('the message is:',item)}
+       /> }
+       ItemSeparatorComponent={Separator}/>
+       
+       </Screen>
     );
 }
+// const styles = StyleSheet.create({
+//     screen:Constants.statusBarHeight,
+// })
 
 export default MessagesScreen;

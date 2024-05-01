@@ -9,18 +9,23 @@ export default function LoginScreen() {
   return (
     <ImageBackground
     style={styles.background}
-    source={require('../assets/login.png')}>
+    source={require('../assets/newaccount.png')}>
     <View style={styles.textInput}>
 
-      <AppText style={styles.text}> name </AppText>
+      <AppText style={styles.text}> Name </AppText>
     <AppTextInput placeholder="user name"/>
-    
-    <AppText style={styles.text}>password</AppText>
+
+    <AppText style={styles.text}>Email</AppText>
+    <AppTextInput placeholder="hello@gmail.com"/>
+
+    <AppText style={styles.text}> Password </AppText>
     <AppTextInput placeholder="********"/>
+
+    <AppText style={styles.text}>Date of Birthday</AppText>
+    <AppTextInput placeholder="13/12/1992"/>
     </View>
     <View style={styles.buttonContainer}>
-      <AppButton title="loging"/>
-      <AppButton title='create new accuont' color='backgroundcolor'/>
+      <AppButton title="sign up"/>
       </View> 
       
       
@@ -40,9 +45,9 @@ const styles = StyleSheet.create({
     marginLeft:'15%',
   },
   textInput:{
-    paddingTop:'100%',
+    paddingTop:'70%',
     width:'80%',
-    paddingLeft:70,
+    paddingLeft:75,
   },
   text:{
     color:colors.litegray,

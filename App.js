@@ -13,6 +13,7 @@ import ListingDetiailsScreen from './app/Screen/ListingDetiailsScreen';
 import MessagesScreen from './app/Screen/MessagesScreen';
 import AppTextInput from './app/component/AppTextInput';
 import{useState}from "react";
+import CreateNewAccuont from './app/Screen/CreateNewAccuont';
 
 export default function App() {
   return (
@@ -29,7 +30,11 @@ export default function App() {
 
   //<WelcomeScreen></WelcomeScreen>
 
-   <LoginScreen></LoginScreen>
+   //<LoginScreen></LoginScreen>
+
+   <CreateNewAccuont></CreateNewAccuont>
+   
+   
 
   // <View style={{
   //     padding:20,

@@ -1,5 +1,6 @@
 import React from 'react';
 import {resizeMode,ImageBackground,StyleSheet,Button, View,Image,SafeAreaView} from 'react-native';
+import AppButton from '../component/Button/AppButton';
 
 function WelcomeScreen(props) {
     return (
@@ -8,20 +9,12 @@ function WelcomeScreen(props) {
     source={require("../assets/welcom.png")} 
     >
       <View SafeAreaView style={styles.container} >
-
-        {/* <Image style={styles.letstartButton} 
-        source={{
-            require:('../assets/lets-start.png'),
-            }}
-            /> */}  
             <View style={styles.letstartButton}>
-            <Button
-        color="#FEFCFF"
+            <AppButton
         title="lets start"
         onPress={() => console.log("work")}/>
         </View>
-        </View>
-       
+        </View>   
     </ImageBackground>
     ); 
 
@@ -38,11 +31,7 @@ const styles = StyleSheet.create({
         },
 
     letstartButton:{
-         marginBottom:120,
-         resizeMode:'stretch',
-         width: "30%", 
-         margin: 10, 
-         backgroundColor: "#493d30",
+        marginBottom:'30%',
     },
 
     

@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Image, SafeAreaView, StatusBar, Platform, Button, Dimensions, useWindowDimensions } from 'react-native';
+import {StyleSheet, Text, View, Image, SafeAreaView, StatusBar, Platform, Button, Dimensions, useWindowDimensions } from 'react-native';
 import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks";
 import WelcomeScreen from './app/Screen/WelcomeScreen';
 import ViewImageScreen from './app/Screen/ViewImageScreen';
@@ -11,8 +11,8 @@ import LoginScreen from './app/Screen/LoginScreen';
 import Crad from './app/component/ Crad';
 import ListingDetiailsScreen from './app/Screen/ListingDetiailsScreen';
 import MessagesScreen from './app/Screen/MessagesScreen';
-
-
+import AppTextInput from './app/component/AppTextInput';
+import{useState}from "react";
 
 export default function App() {
   return (
@@ -29,7 +29,7 @@ export default function App() {
 
   //<WelcomeScreen></WelcomeScreen>
 
-   //<LoginScreen></LoginScreen>
+   <LoginScreen></LoginScreen>
 
   // <View style={{
   //     padding:20,
@@ -42,7 +42,11 @@ export default function App() {
   // />
   // </View>
   //  <ListingDetiailsScreen></ListingDetiailsScreen>
-  <MessagesScreen></MessagesScreen>
+  //<MessagesScreen></MessagesScreen>
+  // <SafeAreaView>
+  //   <AppTextInput placeholder="username"/>
+  // </SafeAreaView>
+
   );
 }
 

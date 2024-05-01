@@ -1,13 +1,16 @@
 import React from 'react';
-import { TouchableOpacity,StyleSheet } from 'react-native';
+import { TouchableOpacity,StyleSheet, View } from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
-function DeleteAcition(props) {
+
+function DeleteAcition({onPress}) {
     return (
         <TouchableOpacity
-        style={styles.container}>
+        onPress={onPress}>
+       <View style={styles.container}>
             <MaterialCommunityIcons 
             style={styles.container}
-            name='tash-can-outline'/>
+            name='trash-can-outline' size={35} color={'white'}/>
+            </View>
 
         </TouchableOpacity>
     );

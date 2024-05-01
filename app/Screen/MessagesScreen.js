@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { FlatList, SafeAreaView,StyleSheet, View } from 'react-native';
+import { FlatList, SafeAreaView,StyleSheet, View} from 'react-native';
 import ListItem from '../component/ListItem';
 import Screen from '../component/Screen';
 import Constants from 'expo-constants';
 import colors from '../config/colors';
 import Separator from '../component/Separator';
+import DeleteAcition from '../component/Button/DeleteAcition';
+
+
 //const[refreshing,setRefreshing]=useState(false);
-const messages=[
+const initialMassages=[
     {
         id:1,
         title:'Hi',
@@ -21,25 +24,38 @@ const messages=[
     },
 ]
 function MessagesScreen(props) {
+
+    const [messages,setmessages] =useState(initialMassages);
+
+    const handlDelelte= messages =>{
+        setmessages(messages.filter(m=>m.id !==messages.id));
+
+    }
     return (
-        <Screen> 
+        // <Screen> 
+        <SafeAreaView>
         
        <FlatList
        data={messages}
        keyExtractor={messages=>messages.id.toString()}
-       renderItem={({item})=> <ListItem 
+       renderItem={({item})=>(
+        <ListItem 
        title={item.title}
        subTitle={item.description}
        image={item.image}
        onPress={()=>console.log('the message is:',item)}
-       /> }
-       ItemSeparatorComponent={Separator}/>
-       
-       </Screen>
+       renderRightActions={()=>
+       <DeleteAcition onPress={()=>handlDelelte(item)}/>
+       } />
+    )} 
+       ItemSeparatorComponent={Separator}
+       />
+      {/* </Screen> */} 
+      </SafeAreaView>
     );
-}
-// const styles = StyleSheet.create({
-//     screen:Constants.statusBarHeight,
-// })
+}  
+const styles = StyleSheet.create({
+    screen:Constants.statusBarHeight,
+})
 
 export default MessagesScreen;

@@ -3,6 +3,7 @@ import React from 'react'
 import colors from '../config/colors';
 import AppText from '../component/AppText';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
+import DeleteAcition from '../component/Button/DeleteAcition';
 
 export default function ViewImageScreen() {
     return (

@@ -25,10 +25,11 @@ const initialMassages=[
 ]
 function MessagesScreen(props) {
 
-    const [messages,setmessages] =useState(initialMassages);
+    const [messages,setMessages] =useState(initialMassages);
+    useState[refreshing,setRefreshing]=useState(false);
 
     const handlDelelte= messages =>{
-        setmessages(messages.filter(m=>m.id !==messages.id));
+        setMessages(messages.filter(m=>m.id !==messages.id));
 
     }
     return (
@@ -45,8 +46,20 @@ function MessagesScreen(props) {
        image={item.image}
        onPress={()=>console.log('the message is:',item)}
        renderRightActions={()=>
-       <DeleteAcition onPress={()=>handlDelelte(item)}/>
-       } />
+       <DeleteAcition onPress={()=>handlDelelte(item)}/>}
+       refreshing={refreshing}
+       onRefrsh={()=>
+    setMessages(([
+        {
+            id:2,
+            title:'Hi you',
+            description:'good',
+            image: require('../assets/profile.jpeg'),
+        },
+    ])
+)}
+       
+       />
     )} 
        ItemSeparatorComponent={Separator}
        />

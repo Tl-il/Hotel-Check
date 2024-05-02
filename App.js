@@ -17,24 +17,25 @@ import CreateNewAccuont from './app/Screen/CreateNewAccuont';
 
 export default function App() {
   return (
-  //  <View style={{
-  //   flex: 1,
-  //   justifyContent:'center',
-  //   alignItems:'center',
-  //   }}
-  //   >
-  //     <AppButton title="login" onPress={()=>console.log("work")}/>
-  //   </View>
+  // scrennn checking:
 
   //<ViewImageScreen></ViewImageScreen>
 
   //<WelcomeScreen></WelcomeScreen>
+  
+  //  <LoginScreen></LoginScreen>
+  
+  //<CreateNewAccuont></CreateNewAccuont>
+  
+  <MessagesScreen></MessagesScreen>
+  
+  //<ListingDetiailsScreen></ListingDetiailsScreen>
 
-   //<LoginScreen></LoginScreen>
 
-   <CreateNewAccuont></CreateNewAccuont>
-   
-   
+
+
+  // component checking:
+
 
   // <View style={{
   //     padding:20,
@@ -46,11 +47,24 @@ export default function App() {
   //   image={require("./app/assets/hotel2.png")}
   // />
   // </View>
-  //  <ListingDetiailsScreen></ListingDetiailsScreen>
-  //<MessagesScreen></MessagesScreen>
+  
+  
+
   // <SafeAreaView>
   //   <AppTextInput placeholder="username"/>
-  // </SafeAreaView>
+  // </SafeAreaView> 
+  
+  
+  
+  //  <View style={{
+  //   flex: 1,
+  //   justifyContent:'center',
+  //   alignItems:'center',
+  //   }}
+  //   >
+  //     <AppButton title="login" onPress={()=>console.log("work")}/>
+  //   </View>
+
 
   );
 }

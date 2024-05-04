@@ -30,7 +30,7 @@ export default function App() {
   
    //<LoginScreen></LoginScreen>
   
-  //<CreateNewAccuont></CreateNewAccuont>
+  <CreateNewAccuont></CreateNewAccuont>
   
   //<MessagesScreen></MessagesScreen>
   
@@ -38,7 +38,7 @@ export default function App() {
   
   //<AccountScreen></AccountScreen>
 
-  <HomeScreen></HomeScreen>
+  //<HomeScreen></HomeScreen>
 
 
 

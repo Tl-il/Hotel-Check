@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text,Platform,StyleSheet} from 'react-native';
-import styles from './styles';
+import { Text} from 'react-native';
+//import styles from './styles';
+import styles from '../../config/styles';
 
 
 function AppText({children,style, color}) {

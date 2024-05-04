@@ -18,6 +18,7 @@ import Icon from './app/component/Icon';
 import Screen from './app/component/Screen';
 import ListItem from './app/component/ListItem';
 import AccountScreen from './app/Screen/AccountScreen';
+import HomeScreen from './app/Screen/HomeScreen';
 
 export default function App() {
   return (
@@ -35,7 +36,9 @@ export default function App() {
   
   //<ListingDetiailsScreen></ListingDetiailsScreen>
   
-  <AccountScreen></AccountScreen>
+  //<AccountScreen></AccountScreen>
+
+  <HomeScreen></HomeScreen>
 
 
 

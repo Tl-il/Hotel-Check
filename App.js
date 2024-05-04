@@ -14,6 +14,10 @@ import MessagesScreen from './app/Screen/MessagesScreen';
 import AppTextInput from './app/component/AppTextInput';
 import{useState}from "react";
 import CreateNewAccuont from './app/Screen/CreateNewAccuont';
+import Icon from './app/component/Icon';
+import Screen from './app/component/Screen';
+import ListItem from './app/component/ListItem';
+import AccountScreen from './app/Screen/AccountScreen';
 
 export default function App() {
   return (
@@ -27,9 +31,11 @@ export default function App() {
   
   //<CreateNewAccuont></CreateNewAccuont>
   
-  <MessagesScreen></MessagesScreen>
+  //<MessagesScreen></MessagesScreen>
   
   //<ListingDetiailsScreen></ListingDetiailsScreen>
+  
+  <AccountScreen></AccountScreen>
 
 
 
@@ -64,6 +70,14 @@ export default function App() {
   //   >
   //     <AppButton title="login" onPress={()=>console.log("work")}/>
   //   </View>
+
+//  <Screen>
+// <ListItem title='hii' subTitle='slom'
+// IconComponent={< Icon 
+// name="email" 
+// size={50} 
+// backgroundColor='black'/>} />
+//  </Screen>
 
 
   );

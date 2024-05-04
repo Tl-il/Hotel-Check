@@ -5,10 +5,10 @@ import AppText from './AppText';
 
 
 
-function  Crad({title,subTitle,image}) {
+function  Crad({title,subTitle,image,style}) {
     return (
       <View style={styles.card}>
-        <Image style={styles.image} source={require=(image)}/>
+        <Image style={[styles.image,style]} source={require=(image)}/>
         <View style={styles.detailsContanier}>
        <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle} >{subTitle}</AppText>

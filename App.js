@@ -1,24 +1,25 @@
 
-import {StyleSheet, Text, View, Image, SafeAreaView, StatusBar, Platform, Button, Dimensions, useWindowDimensions } from 'react-native';
+import {TextInput,StyleSheet, Text, View, Image, SafeAreaView, StatusBar, Platform, Button, Dimensions, useWindowDimensions } from 'react-native';
 import { useDimensions, useDeviceOrientation } from "@react-native-community/hooks";
 import WelcomeScreen from './app/Screen/WelcomeScreen';
 import ViewImageScreen from './app/Screen/ViewImageScreen';
-import { } from '@expo/vector-icons';
+import {MateriaCommunityIcons } from '@expo/vector-icons';
 import AppButton from './app/component/Button/AppButton';
 import colors from './app/config/colors';
-import AppText from './app/component/AppText';
+import AppText from './app/component/AppText/index'
 import LoginScreen from './app/Screen/LoginScreen';
 import Crad from './app/component/ Crad';
 import ListingDetiailsScreen from './app/Screen/ListingDetiailsScreen';
 import MessagesScreen from './app/Screen/MessagesScreen';
 import AppTextInput from './app/component/AppTextInput';
-import{useState}from "react";
+import react,{useState} from 'react';
 import CreateNewAccuont from './app/Screen/CreateNewAccuont';
 import Icon from './app/component/Icon';
 import Screen from './app/component/Screen';
 import ListItem from './app/component/ListItem';
 import AccountScreen from './app/Screen/AccountScreen';
 import HomeScreen from './app/Screen/HomeScreen';
+import AppPicker from './app/component/AppPicker';
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
   
    //<LoginScreen></LoginScreen>
   
-  <CreateNewAccuont></CreateNewAccuont>
+  //<CreateNewAccuont></CreateNewAccuont>
   
   //<MessagesScreen></MessagesScreen>
   
@@ -82,6 +83,17 @@ export default function App() {
 // backgroundColor='black'/>} />
 //  </Screen>
 
+
+ <Screen>
+  <AppPicker icon="email" Placeholder='DDD'/>
+  <AppTextInput icon="email" placeholder="doo" />
+ </Screen>
+
+
+//  <Screen>
+//   <AppTextInput  Placeholder="hhh"
+//   name="email"/>
+//  </Screen>
 
   );
 }

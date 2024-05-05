@@ -8,7 +8,7 @@ function DeleteAcition({ onPress }) {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.container}>
         <MaterialCommunityIcons
-          name="trash-can"
+          name='trash-can'
           size={35}
           color={colors.white}
         />

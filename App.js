@@ -21,7 +21,15 @@ import AccountScreen from './app/Screen/AccountScreen';
 import HomeScreen from './app/Screen/HomeScreen';
 import AppPicker from './app/component/AppPicker';
 
+
+const categories=[
+  {label:"דירוג",value:1},
+  {label:"מרחק",value:2},
+  {label:"מתקנים",value:3},
+];
+
 export default function App() {
+  const [category,setCategory]=useState();
   return (
   // scrennn checking:
 
@@ -85,15 +93,14 @@ export default function App() {
 
 
  <Screen>
-  <AppPicker icon="email" Placeholder='DDD'/>
-  <AppTextInput icon="email" placeholder="doo" />
+  <AppPicker
+  selectedItem={category}
+  onSelectItem={item=>setCategory(item)}
+   items={categories} icon="apps" Placeholder='category'/>
+  <AppTextInput icon="email" placeholder="email" />
  </Screen>
 
 
-//  <Screen>
-//   <AppTextInput  Placeholder="hhh"
-//   name="email"/>
-//  </Screen>
 
   );
 }

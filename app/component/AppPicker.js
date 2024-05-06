@@ -9,7 +9,7 @@ import PickerItem from './PickerItem';
 
 
 
-function AppPicker({items,icon,Placeholder,onSelectItem,selectedItem}) {
+function AppPicker({items,icon,Placeholder,onSelectItem,selectedItem,PickerItemComponent=PickerItem,}) {
     [modalVisible,setModalVisible]=useState(false);
 
     return (
@@ -35,7 +35,7 @@ function AppPicker({items,icon,Placeholder,onSelectItem,selectedItem}) {
             data={items}
             keyExtractor = {(item)=> item.value.toString()}
             renderItem={({item})=>(
-             <PickerItem
+             <PickerItemComponent
             label={item.label} 
             onPress={()=>{
                 setModalVisible(false);

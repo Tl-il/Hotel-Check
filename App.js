@@ -22,14 +22,14 @@ import HomeScreen from './app/Screen/HomeScreen';
 import AppPicker from './app/component/AppPicker';
 
 
-const categories=[
-  {label:"דירוג",value:1},
-  {label:"מרחק",value:2},
-  {label:"מתקנים",value:3},
-];
+// const categories=[
+//   {label:"דירוג",value:1},
+//   {label:"מרחק",value:2},
+//   {label:"מתקנים",value:3},
+// ]; //picker
 
 export default function App() {
-  const [category,setCategory]=useState();
+  // const [category,setCategory]=useState(); //picker
   return (
   // scrennn checking:
 
@@ -37,7 +37,7 @@ export default function App() {
 
   //<WelcomeScreen></WelcomeScreen>
   
-   //<LoginScreen></LoginScreen>
+  <LoginScreen></LoginScreen>
   
   //<CreateNewAccuont></CreateNewAccuont>
   
@@ -92,13 +92,13 @@ export default function App() {
 //  </Screen>
 
 
- <Screen>
-  <AppPicker
-  selectedItem={category}
-  onSelectItem={item=>setCategory(item)}
-   items={categories} icon="apps" Placeholder='category'/>
-  <AppTextInput icon="email" placeholder="email" />
- </Screen>
+//  <Screen>
+//   <AppPicker
+//   selectedItem={category}
+//   onSelectItem={item=>setCategory(item)}
+//    items={categories} icon="apps" Placeholder='category'/>
+//   <AppTextInput icon="email" placeholder="email" />
+//  </Screen> //picker
 
 
 

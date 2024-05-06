@@ -1,11 +1,13 @@
 import { View, Text, ImageBackground,StyleSheet,resizeMode, TextInput } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
 
 export default function LoginScreen() {
+const[username,setUserName]=useState();
+const[password,setPassword]=useState();
   return (
     <ImageBackground
     style={styles.background}
@@ -13,13 +15,29 @@ export default function LoginScreen() {
     <View style={styles.textInput}>
 
       <AppText style={styles.text}> name </AppText>
-    <AppTextInput placeholder="user name"/>
+    <AppTextInput 
+    icon='email'
+    placeholder="Email"
+    autoCapitalize='none'
+    autoCorrect={false}
+    keyborardType='email-address'
+    onChangeText={text=>setUserName(text)}
+    textContentType="emailAddress"
+    />
     
     <AppText style={styles.text}>password</AppText>
-    <AppTextInput placeholder="********"/>
+    <AppTextInput
+    autoCapitalize='none'
+    autoCorrect={false}
+    icon='lock'
+    onChangeText={text=>setPassword(text)}
+    placeholder="********"
+    textContentType="password"
+    secureTextEntry={true}
+    />
     </View>
     <View style={styles.buttonContainer}>
-      <AppButton title="loging"/>
+      <AppButton title="loging" onPress={()=> console.log(username,password)}/>
       <AppButton title='create new accuont' color='backgroundcolor'/>
       </View> 
       

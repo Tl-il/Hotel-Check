@@ -4,10 +4,25 @@ import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
+import { getAuth,signInWithEmailAndPassword } from 'firebase/auth'
 
 export default function LoginScreen() {
-const[username,setUserName]=useState();
+const[email,setEmail]=useState();
 const[password,setPassword]=useState();
+
+
+const auth = getAuth();
+
+const signin =()=> {signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    const user = userCredential.user;
+  })
+  .catch((error) => {
+    const errorCode = alert(error.code);
+    const errorMessage =alert(error.message);
+  })
+}
+  
   return (
     <ImageBackground
     style={styles.background}
@@ -21,7 +36,7 @@ const[password,setPassword]=useState();
     autoCapitalize='none'
     autoCorrect={false}
     keyborardType='email-address'
-    onChangeText={text=>setUserName(text)}
+    onChangeText={text=>setEmail(text)}
     textContentType="emailAddress"
     />
     
@@ -37,7 +52,7 @@ const[password,setPassword]=useState();
     />
     </View>
     <View style={styles.buttonContainer}>
-      <AppButton title="loging" onPress={()=> console.log(username,password)}/>
+      <AppButton title="loging" onPress={signin}/>
       <AppButton title='create new accuont' color='backgroundcolor'/>
       </View> 
       

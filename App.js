@@ -20,6 +20,7 @@ import ListItem from './app/component/ListItem';
 import AccountScreen from './app/Screen/AccountScreen';
 import HomeScreen from './app/Screen/HomeScreen';
 import AppPicker from './app/component/AppPicker';
+import { firebaseConfig } from "./app/firebase";
 
 
 // const categories=[

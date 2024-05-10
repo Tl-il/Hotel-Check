@@ -13,11 +13,11 @@ const[password,setPassword]=useState();
 
 const auth = getAuth();
 
-const signin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
+const lognin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
-    alert('user logg')
-    
+    alert('user login')
+    user ? navigation.navigate('Home') : console.log('user login');
   })
   .catch((error) => {
      const errorCode = alert(error.code);
@@ -71,7 +71,7 @@ const signin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
     />
     </View>
     <View style={styles.buttonContainer}>
-      <AppButton title="loging" onPress={(signin) =>navigation.navigate('HomeScreen')}/>
+      <AppButton title="loging" onPress={lognin}/>
       <AppButton title='create new accuont' color='backgroundcolor' onPress={()=> navigation.navigate('New Accuont')}/>
       </View> 
       

@@ -21,7 +21,30 @@ import AccountScreen from './app/Screen/AccountScreen';
 import HomeScreen from './app/Screen/HomeScreen';
 import AppPicker from './app/component/AppPicker';
 import { firebaseConfig } from "./app/firebase";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { NavigationContainer } from '@react-navigation/native';
+import AuthNavigator from './app/navigation/AuthNavigator';
 
+
+//navigation:
+const Tweets = () => (
+  <Screen>
+    <Text>Tweets</Text>
+  </Screen>
+);
+
+const TweetDetails = () => (
+  <Screen>
+    <Text>Tweet Details</Text>
+  </Screen>
+);
+ const Stack = createNativeStackNavigator();
+ const StackNavigator = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Tweets" component={Tweets} />
+    <Stack.Screen name="TweetDetails" component={TweetDetails} />
+  </Stack.Navigator>
+ )
 
 // const categories=[
 //   {label:"דירוג",value:1},
@@ -32,23 +55,33 @@ import { firebaseConfig } from "./app/firebase";
 export default function App() {
   // const [category,setCategory]=useState(); //picker
   return (
+//navigation:
+<NavigationContainer>
+<AuthNavigator/>
+</NavigationContainer>
+
+
+
   // scrennn checking:
 
   //<ViewImageScreen></ViewImageScreen>
 
-  //<WelcomeScreen></WelcomeScreen>
+  //<WelcomeScreen></WelcomeScreen> 
   
-  <LoginScreen></LoginScreen>
+ // <LoginScreen></LoginScreen>
   
   //<CreateNewAccuont></CreateNewAccuont>
-  
-  //<MessagesScreen></MessagesScreen>
+
+  //<HomeScreen></HomeScreen>
   
   //<ListingDetiailsScreen></ListingDetiailsScreen>
   
   //<AccountScreen></AccountScreen>
 
-  //<HomeScreen></HomeScreen>
+  //<MessagesScreen></MessagesScreen>
+   
+  
+  
 
 
 
@@ -100,6 +133,14 @@ export default function App() {
 //    items={categories} icon="apps" Placeholder='category'/>
 //   <AppTextInput icon="email" placeholder="email" />
 //  </Screen> //picker
+
+
+
+
+
+
+//navigation checking:
+
 
 
 

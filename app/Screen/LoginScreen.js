@@ -4,23 +4,42 @@ import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
-import { getAuth,signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth,signInWithEmailAndPassword} from 'firebase/auth'
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
 const[email,setEmail]=useState();
 const[password,setPassword]=useState();
 
 
 const auth = getAuth();
 
-const signin =()=> {signInWithEmailAndPassword(auth, email, password)
+const signin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
+    alert('user logg')
+    
   })
   .catch((error) => {
-    const errorCode = alert(error.code);
-    const errorMessage =alert(error.message);
-  })
+     const errorCode = alert(error.code);
+    const errorMessage =alert(error.nativeErrorMessage);
+    switch (error.code) {
+      case 'auth/missing-email':
+          console.log('missing email');
+          break;
+      case 'auth/user-disabled':
+          console.log('User account is disabled');
+          break;
+      case 'auth/user-not-found':
+          console.log('User not found');
+          break;
+      case 'auth/missing-password':
+          console.log('Wrong password');
+          break;
+      default:
+          console.log('email or password is wrong');
+          break;
+  }
+})
 }
   
   return (
@@ -52,8 +71,8 @@ const signin =()=> {signInWithEmailAndPassword(auth, email, password)
     />
     </View>
     <View style={styles.buttonContainer}>
-      <AppButton title="loging" onPress={signin}/>
-      <AppButton title='create new accuont' color='backgroundcolor'/>
+      <AppButton title="loging" onPress={(signin) =>navigation.navigate('HomeScreen')}/>
+      <AppButton title='create new accuont' color='backgroundcolor' onPress={()=> navigation.navigate('New Accuont')}/>
       </View> 
       
       

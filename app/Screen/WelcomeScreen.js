@@ -2,7 +2,8 @@ import React from 'react';
 import {resizeMode,ImageBackground,StyleSheet,Button, View,Image,SafeAreaView} from 'react-native';
 import AppButton from '../component/Button/AppButton';
 
-function WelcomeScreen(props) {
+
+function WelcomeScreen({navigation}) {
     return (
     <ImageBackground
     style={styles.background} 
@@ -12,7 +13,7 @@ function WelcomeScreen(props) {
             <View style={styles.letstartButton}>
             <AppButton
         title="lets start"
-        onPress={() => console.log("work")}/>
+        onPress={() => navigation.navigate("Login")}/>
         </View>
         </View>   
     </ImageBackground>

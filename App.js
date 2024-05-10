@@ -25,6 +25,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
+import BarBottom from './app/navigation/BarBottom';
 
 
 //navigation:
@@ -58,7 +59,7 @@ export default function App() {
   return (
 //navigation:
 <NavigationContainer theme={navigationTheme}>
-<AuthNavigator/>
+<BarBottom/>
 </NavigationContainer>
 
 

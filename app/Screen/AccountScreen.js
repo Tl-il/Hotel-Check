@@ -11,15 +11,15 @@ const menuItems=[
     {
         title:'My post',
         icon:{
-            name:"format-list-bulleted",
+            name:"email",
             backgoundcolor:colors.primary,
         }
     },
     {
         title:'My favorite posts',
         icon:{
-            name:"email",
-            backgoundcolor:colors.backgroundcolor,
+            name:"heart",
+            backgoundcolor:colors.primary,
         }
     },
 ]
@@ -31,10 +31,12 @@ function AccountScreen(props) {
             <Crad
             image={require('../assets/profile.jpeg')}
             style={styles.image}
-            title={'name'}
-            subTitle={'average rank'}
+            title={'Jiara Martins'}
+            subTitle={'hello@reallygreatsite.com'}
+            
             />
         {/*  מאפשר לעשות את התמונת פרופיל כרשימה ביחד עם כולם<ListItem
+        להוסיף כפתור edit profile
         title={'name'} subTitle={'average rank'}
         image={require('../assets/profile.jpeg')}/> */}
         
@@ -74,9 +76,13 @@ const styles = StyleSheet.create({
         marginVertical:20,
     },
     image: {
-        width: 140,
+        width: 130,
         height: 140,
         borderRadius: 70,
+        marginLeft: 60,
+        marginTop: 30,
+
+        
       },
       profile:{
         justifyContent:'center',

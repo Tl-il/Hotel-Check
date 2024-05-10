@@ -7,16 +7,30 @@ import { FlatList,StyleSheet } from 'react-native';
 const listhotels=[
     {
         id:1,
-        title:'name of the hotel',
+        title:'Dan Eilat Hotel',
         stars:4.3,
         image: require('../assets/hotel1.jpeg')
 
     },
     {
         id:2,
-        title:'name of the hotel',
+        title:'Wost Lagoon Netanya Hotel',
         stars:4.6,
         image: require('../assets/hotel2.jpeg')
+
+    },
+    {
+        id:3,
+        title:'Hilton Tel-Aviv Hotel',
+        stars:3.8,
+        image: require('../assets/hotel3.jpeg')
+
+    },
+    {
+        id:4,
+        title:'Orient Jerusalem Hotel',
+        stars:4.9,
+        image: require('../assets/hotel3.jpg')
 
     }
 ];

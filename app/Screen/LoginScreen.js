@@ -72,7 +72,6 @@ const lognin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
     </View>
     <View style={styles.buttonContainer}>
       <AppButton title="loging" onPress={lognin}/>
-      <AppButton title='create new accuont' color='backgroundcolor' onPress={()=> navigation.navigate('New Accuont')}/>
       </View> 
       
       
@@ -88,11 +87,11 @@ const styles = StyleSheet.create({
   buttonContainer:{
     padding:20,
     width:'130%',
-    marginTop:70,
+    marginTop:20,
     marginLeft:'15%',
   },
   textInput:{
-    paddingTop:'100%',
+    paddingTop:'80%',
     width:'80%',
     paddingLeft:70,
   },

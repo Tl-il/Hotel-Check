@@ -1,6 +1,7 @@
 import React from 'react';
 import {resizeMode,ImageBackground,StyleSheet,Button, View,Image,SafeAreaView} from 'react-native';
 import AppButton from '../component/Button/AppButton';
+import BarBottom from '../navigation/BarBottom';
 
 
 function WelcomeScreen({navigation}) {
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     padding:30,
     width:'140%',
     marginLeft:'12%',
-    marginBottom:'100%',
+    marginBottom:'75%',
     },
 
     

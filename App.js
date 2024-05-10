@@ -24,6 +24,7 @@ import { firebaseConfig } from "./app/firebase";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
+import navigationTheme from './app/navigation/navigationTheme';
 
 
 //navigation:
@@ -56,7 +57,7 @@ export default function App() {
   // const [category,setCategory]=useState(); //picker
   return (
 //navigation:
-<NavigationContainer>
+<NavigationContainer theme={navigationTheme}>
 <AuthNavigator/>
 </NavigationContainer>
 

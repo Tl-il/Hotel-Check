@@ -13,7 +13,7 @@ function WelcomeScreen({navigation}) {
       </View>
     <View style={styles.letstartButton}>
       <AppButton title="loging" onPress={() =>navigation.navigate('Login')}/>
-      <AppButton title='create new accuont'onPress={()=> navigation.navigate('New Accuont')}/>
+      <AppButton title='create new accuont' color="button" onPress={()=> navigation.navigate('New Accuont')}/>
       </View> 
             {/* <View style={styles.letstartButton}>
             <AppButton

@@ -7,15 +7,20 @@ function WelcomeScreen({navigation}) {
     return (
     <ImageBackground
     style={styles.background} 
-    source={require("../assets/welcom.png")} 
+    source={require("../assets/home.png")} 
     >
       <View SafeAreaView style={styles.container} >
-            <View style={styles.letstartButton}>
+      </View>
+    <View style={styles.letstartButton}>
+      <AppButton title="loging" onPress={(signin) =>navigation.navigate('HomeScreen')}/>
+      <AppButton title='create new accuont'onPress={()=> navigation.navigate('New Accuont')}/>
+      </View> 
+            {/* <View style={styles.letstartButton}>
             <AppButton
         title="lets start"
         onPress={() => navigation.navigate("Login")}/>
         </View>
-        </View>   
+        </View>    */}
     </ImageBackground>
     ); 
 
@@ -32,7 +37,10 @@ const styles = StyleSheet.create({
         },
 
     letstartButton:{
-        marginBottom:'30%',
+    padding:30,
+    width:'140%',
+    marginLeft:'12%',
+    marginBottom:'95%',
     },
 
     

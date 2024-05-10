@@ -12,8 +12,9 @@ function WelcomeScreen({navigation}) {
       <View SafeAreaView style={styles.container} >
       </View>
     <View style={styles.letstartButton}>
-      <AppButton title="loging" onPress={(signin) =>navigation.navigate('HomeScreen')}/>
-      <AppButton title='create new accuont'onPress={()=> navigation.navigate('New Accuont')}/>
+      {/* <AppButton title="loging" onPress={(signin) =>navigation.navigate('LoginScreen')}/> */}
+      <AppButton title="loging" onPress={() =>navigation.navigate('LoginScreen')}/>
+      <AppButton title='create new accuont'color='button'onPress={()=> navigation.navigate('New Accuont')} />
       </View> 
             {/* <View style={styles.letstartButton}>
             <AppButton
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     padding:30,
     width:'140%',
     marginLeft:'12%',
-    marginBottom:'95%',
+    marginBottom:'100%',
     },
 
     

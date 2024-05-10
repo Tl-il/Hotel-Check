@@ -5,7 +5,7 @@ import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
   return (
     <ImageBackground
     style={styles.background}
@@ -21,8 +21,8 @@ export default function LoginScreen() {
     <AppText style={styles.text}> Password </AppText>
     <AppTextInput placeholder="********"/>
 
-    <AppText style={styles.text}>Date of Birthday</AppText>
-    <AppTextInput placeholder="13/12/1992"/>
+    {/* <AppText style={styles.text}>Date of Birthday</AppText>
+    <AppTextInput placeholder="13/12/1992"/> */}
     </View>
     <View style={styles.buttonContainer}>
       <AppButton title="sign up"/>
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
   buttonContainer:{
     padding:20,
     width:'130%',
-    marginTop:70,
+    marginTop:20,
     marginLeft:'15%',
   },
   textInput:{
-    paddingTop:'70%',
+    paddingTop:'55%',
     width:'80%',
     paddingLeft:75,
   },

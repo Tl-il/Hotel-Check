@@ -3,7 +3,7 @@ import { Image, View, StyleSheet, } from 'react-native';
 import AppText from '../component/AppText';
 import ListItem from '../component/ListItem';
 
-function ListingDetiailsScreen(props) {
+function ListingDetiailsScreen({Navigation}) {
     return (
         <View>
             <Image style={styles.image} source={require('../assets/hotel1.jpeg')}/>

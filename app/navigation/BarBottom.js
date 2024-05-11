@@ -6,6 +6,7 @@ import LoginScreen from '../Screen/LoginScreen';
 import WelcomeScreen from '../Screen/WelcomeScreen';
 import NewPost from '../Screen/NewPost' ;
 import CreateNewAccuont from '../Screen/CreateNewAccuont';
+import ListingDetiailsScreen from '../Screen/ListingDetiailsScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -18,6 +19,7 @@ const BarBottom = () => (
         <Tab.Screen name="Login" component={LoginScreen} />
         <Tab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}} />
         <Tab.Screen name="New Accuont" component={CreateNewAccuont} />
+        <Tab.Screen name="Lisit" component={ListingDetiailsScreen} />
     </Tab.Navigator>
 )
 export default BarBottom;

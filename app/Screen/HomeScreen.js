@@ -34,7 +34,7 @@ const listhotels=[
 
     }
 ];
-function HomeScreen(props) {
+function HomeScreen({navigation}) { 
     return (
         <Screen style={styles.screen}>
            <FlatList
@@ -42,7 +42,7 @@ function HomeScreen(props) {
            keyExtractor={listhotels=>listhotels.id.toString()}
            renderItem={({item})=>
            <Crad // אם לעשות את זה כרשימה?
-           image={item.image}
+           image={item.image}  onPress={() =>navigation.navigate('Lisit')}
            title={item.title}
            subTitle={ "⭐" + item.stars} 
            />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View,StyleSheet,Image,o} from 'react-native';
+import { View,StyleSheet,Image,TouchableOpacity} from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
 
@@ -7,13 +7,15 @@ import AppText from './AppText';
 
 function  Crad({title,subTitle,image,style,onPress}) {
     return (
+        <TouchableOpacity onPress={onPress}> 
       <View style={styles.card}>
-        <Image style={[styles.image,style]} source={require=(image)}/>
+        <Image style={[styles.image,style]} source={require=(image)} />
         <View style={styles.detailsContanier}>
        <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle} >{subTitle}</AppText>
         </View>
       </View>
+      </TouchableOpacity>
     );
 }
 const styles = StyleSheet.create({

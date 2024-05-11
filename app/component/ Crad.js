@@ -1,11 +1,11 @@
 import React from 'react';
-import { View,StyleSheet,Image,} from 'react-native';
+import { View,StyleSheet,Image,o} from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
 
 
 
-function  Crad({title,subTitle,image,style}) {
+function  Crad({title,subTitle,image,style,onPress}) {
     return (
       <View style={styles.card}>
         <Image style={[styles.image,style]} source={require=(image)}/>

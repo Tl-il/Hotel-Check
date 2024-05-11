@@ -18,8 +18,6 @@ const BarBottom = () => (
         <Tab.Screen name="Login" component={LoginScreen} />
         <Tab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}} />
         <Tab.Screen name="New Accuont" component={CreateNewAccuont} />
-
-
     </Tab.Navigator>
 )
 export default BarBottom;

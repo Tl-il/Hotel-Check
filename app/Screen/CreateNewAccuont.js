@@ -5,7 +5,7 @@ import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
 
-export default function LoginScreen({navigation}) {
+export default function CreateNewAccuont({navigation}) {
   return (
     <ImageBackground
     style={styles.background}

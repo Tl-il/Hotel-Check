@@ -5,6 +5,7 @@ import AccountScreen from '../Screen/AccountScreen';
 import LoginScreen from '../Screen/LoginScreen';
 import WelcomeScreen from '../Screen/WelcomeScreen';
 import NewPost from '../Screen/NewPost' ;
+import CreateNewAccuont from '../Screen/CreateNewAccuont';
 
 
 const Tab = createBottomTabNavigator();
@@ -15,7 +16,8 @@ const BarBottom = () => (
         <Tab.Screen name="Account" component={AccountScreen} />
         <Tab.Screen name="Post" component={NewPost} />  
         <Tab.Screen name="Login" component={LoginScreen} />
-        <Tab.Screen name="Welcome" component={WelcomeScreen} />
+        <Tab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}} />
+        <Tab.Screen name="New Accuont" component={CreateNewAccuont} />
 
 
     </Tab.Navigator>

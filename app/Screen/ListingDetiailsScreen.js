@@ -3,14 +3,16 @@ import { Image, View, StyleSheet, } from 'react-native';
 import AppText from '../component/AppText';
 import ListItem from '../component/ListItem';
 
-function ListingDetiailsScreen({Navigation}) {
+function ListingDetiailsScreen({route}) {
+    const listing = route.params;
     return (
         <View>
-            <Image style={styles.image} source={require('../assets/hotel1.jpeg')}/>
+            <Image style={styles.image} source={listing.image}/>
             <View style={styles.detailsContainer}>
-            <AppText style={styles.title}>שם המלון</AppText>
-            <AppText style={styles.price}>מחיר</AppText>
-            <AppText>דירוג </AppText>
+            <AppText style={styles.title}>{listing.title}</AppText> 
+            <AppText style={styles.price}>${listing.price}</AppText>
+            <AppText style={styles.stars}>⭐{listing.stars}</AppText>
+           
             <View style={styles.userContainer}></View>
             <ListItem
             image={require('../assets/profile.jpeg')}

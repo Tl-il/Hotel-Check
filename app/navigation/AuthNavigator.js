@@ -8,6 +8,7 @@ import ViewImageScreen from '../Screen/ViewImageScreen';
 import MessageQueue from 'react-native/Libraries/BatchedBridge/MessageQueue';
 import ListingDetiailsScreen from '../Screen/ListingDetiailsScreen';
 import AccountScreen from '../Screen/AccountScreen';
+import MessagesScreen from '../Screen/MessagesScreen';
 
 
 const Stack = createNativeStackNavigator();

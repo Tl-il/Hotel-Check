@@ -20,7 +20,9 @@ const initialMessages = [
   },
 ];
 
-function MessagesScreen(props) {
+function MessagesScreen({route}) {
+  const message = route.params;
+
   const [messages, setMessages] = useState(initialMessages);
   const [refreshing, setRefreshing] = useState(false);
 

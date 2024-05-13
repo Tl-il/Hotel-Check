@@ -69,17 +69,19 @@ export default function App() {
   };
   // const [category,setCategory]=useState(); //picker
   return (
-    <Screen>
-      <ImageInputList
-      imageUris={imageUris} 
-      onAddImage={handleAdd}
-      onRemoveImage={handleRemove}
-      />
-    </Screen>
-//navigation:
-//<NavigationContainer theme={navigationTheme}>
-//<BarBottom/>
-//</NavigationContainer>
+    // <Screen>
+    //   <ImageInputList
+    //   imageUris={imageUris} 
+    //   onAddImage={handleAdd}
+    //   onRemoveImage={handleRemove}
+    //   />
+    // </Screen>
+    //navigation:
+
+    <NavigationContainer theme={navigationTheme}>
+      <BarBottom/>
+    </NavigationContainer>
+
 
 
 

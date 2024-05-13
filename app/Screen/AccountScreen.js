@@ -1,7 +1,7 @@
 import React from 'react';
 import Screen from '../component/Screen';
 import ListItem from '../component/ListItem';
-import { StyleSheet, View ,FlatList } from 'react-native';
+import { StyleSheet, View ,FlatList} from 'react-native';
 import colors from '../config/colors';
 import Icon from '../component/Icon';
 import Separator from '../component/Separator';
@@ -20,11 +20,15 @@ const menuItems=[
         icon:{
             name:"heart",
             backgoundcolor:colors.primary,
-        }
+        },
+
+        targetScreen:'Messages',
     },
+    
+    
 ]
 
-function AccountScreen(props) {
+function AccountScreen({navigation}) {
     return (
        <Screen style={styles.screen}>
         <View style={styles.profile}>
@@ -35,26 +39,22 @@ function AccountScreen(props) {
             subTitle={'hello@reallygreatsite.com'}
             
             />
-        {/*  מאפשר לעשות את התמונת פרופיל כרשימה ביחד עם כולם<ListItem
-        להוסיף כפתור edit profile
-        title={'name'} subTitle={'average rank'}
-        image={require('../assets/profile.jpeg')}/> */}
-        
         </View>
         <View style={styles.containr}>
             <FlatList
             data={menuItems}
             keyExtractor={item=>item.title}
             ItemSeparatorComponent={Separator}
-            renderItem={({item})=> 
+            renderItem={({item})=>( 
             <ListItem
             title={item.title}
             IconComponent={<Icon
             name={item.icon.name} backgroundColor={item.icon.backgoundcolor}
             />
-        }
-        />
             }
+            onPress={()=>navigation.navigate(item.targetScreen)}
+            />
+            )}
             />
         </View>
         <ListItem

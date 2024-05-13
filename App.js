@@ -26,6 +26,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import AuthNavigator from './app/navigation/AuthNavigator';
 import navigationTheme from './app/navigation/navigationTheme';
 import BarBottom from './app/navigation/BarBottom';
+import * as Permissions from 'expo-permissions';
+import * as ImagePicker from 'expo-image-picker';
+import ImageInput from './app/component/Imagecompnent/ImageInput';
+import ImageInputList from './app/component/Imagecompnent/ImageInputList';
+
 
 
 //navigation:
@@ -55,12 +60,26 @@ const TweetDetails = () => (
 // ]; //picker
 
 export default function App() {
+  const [imageUris,setImageUris]=useState(); //image
+  const handleAdd=imageUri=>{
+    setImageUris([...imageUris,imageUri]);
+  };
+  const handleRemove=imageUri=>{
+    setImageUris(imageUris.filter(uri=>uri !== imageUri));
+  };
   // const [category,setCategory]=useState(); //picker
   return (
+    <Screen>
+      <ImageInputList
+      imageUris={imageUris} 
+      onAddImage={handleAdd}
+      onRemoveImage={handleRemove}
+      />
+    </Screen>
 //navigation:
-<NavigationContainer theme={navigationTheme}>
-<BarBottom/>
-</NavigationContainer>
+//<NavigationContainer theme={navigationTheme}>
+//<BarBottom/>
+//</NavigationContainer>
 
 
 

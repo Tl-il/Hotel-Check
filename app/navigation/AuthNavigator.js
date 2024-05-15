@@ -9,18 +9,18 @@ import MessageQueue from 'react-native/Libraries/BatchedBridge/MessageQueue';
 import ListingDetiailsScreen from '../Screen/ListingDetiailsScreen';
 import AccountScreen from '../Screen/AccountScreen';
 import MessagesScreen from '../Screen/MessagesScreen';
-
+import WelcomeNavigator from './WelcomeNavigator';
+import AccuontNavigator from './AccuontNavigator';
+import FeedNavigator from './FeedNavigator';
 
 const Stack = createNativeStackNavigator();
  
 
 const AuthNavigator = () => (
     <Stack.Navigator>
-        <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false}} />
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="NewAccuont" component={CreateNewAccuont} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Listdetiail" component={ListingDetiailsScreen} />
+        <Stack.Screen name="Welcome" component={WelcomeNavigator} />
+        <Stack.Screen name="Feed" component={FeedNavigator} />
+        <Stack.Screen name="Account" component={AccuontNavigator} />
         {/* <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />

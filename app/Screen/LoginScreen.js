@@ -17,7 +17,7 @@ const lognin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
     alert('user login')
-    user ? navigation.navigate('Home') : console.log('user login');
+    user ? navigation.navigate('Feed') : console.log('user login');
   })
   .catch((error) => {
      const errorCode = alert(error.code);

@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 const WelcomeNavigator =()=> (
     
         <Stack.Navigator>
-            <Stack.Screen name="welcome" component={WelcomeScreen} options={{headerShown:false }}/>
+            <Stack.Screen name="Welcome" component={WelcomeScreen} options={{headerShown:false }}/>
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="New Accuont" component={CreateNewAccuont} />
         </Stack.Navigator>

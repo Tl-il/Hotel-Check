@@ -4,6 +4,7 @@ import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
+import ImageInputList from "../component/Imagecompnent/ImageInputList";
 
 export default function NewPost({navigation}) {
   return (
@@ -21,9 +22,8 @@ export default function NewPost({navigation}) {
     {/* <AppTextInput placeholder="Link to the hotel page"/> */}
 
     <AppTextInput placeholder="Tell about your experience.."/>
-
-    <AppTextInput placeholder="לשנות לקוביה קטנה להעלת תמונה"/>
-
+    
+    <ImageInputList/>
 
 
 
@@ -58,5 +58,6 @@ const styles = StyleSheet.create({
   },
   text:{
     color:colors.litegray,
-  }
+  },
+  
 })

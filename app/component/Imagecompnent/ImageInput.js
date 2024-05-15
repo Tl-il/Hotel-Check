@@ -4,6 +4,8 @@ import colors from '../../config/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
+import { set } from 'firebase/database';
+
 
 
 function ImageInput({imageUri, onChangeImage}) {
@@ -11,26 +13,13 @@ function ImageInput({imageUri, onChangeImage}) {
         requestPermission();
     }, []);   
 
-
+ 
     const requestPermission = async () => {
         const {granted} = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (!granted)
             alert('You need to enable permission to access the library');
     }
-    const selectImage = async () => {
-        try {
-            const result = await ImagePicker.launchImageLibraryAsync({
-                mediaTypes: ImagePicker.MediaTypeOptions.Images,
-                quality: 0.5,
-            });
-                if (!result.canceled) onChangeImage(result.uri);
-
-            } catch (error) {
-                console.log("Error reading an image", error);
-            }
-           
-        }
-
+    
     const handlePress = () => {
         if (!imageUri)selectImage();
         else {
@@ -38,9 +27,31 @@ function ImageInput({imageUri, onChangeImage}) {
                 {text: 'Yes', onPress: () => onChangeImage(null)},
                 {text: 'No'},
             ]);
-    }   
-    
+
+        }
     }
+
+    const selectImage = async () => {
+        try {
+            const result = await ImagePicker.launchImageLibraryAsync({
+                mediaTypes: ImagePicker.MediaTypeOptions.Images,
+                quality: 0.5,
+            });
+                if (!result.canceled)
+                    selectImage=result.assets[0].uri;
+                setImageUri(result.uri);
+                onChangeImage(result.uri);
+
+            } catch (error) {
+                console.log("Error reading an image", error);
+            }
+           
+        }
+
+    
+     
+    
+    
     return (
         <TouchableWithoutFeedback onPress={handlePress}>
     <View style={styles.container}>

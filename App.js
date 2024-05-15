@@ -60,13 +60,13 @@ const TweetDetails = () => (
 // ]; //picker
 
 export default function App() {
-  const [imageUris,setImageUris]=useState(); //image
-  const handleAdd=imageUri=>{
-    setImageUris([...imageUris,imageUri]);
-  };
-  const handleRemove=imageUri=>{
-    setImageUris(imageUris.filter(uri=>uri !== imageUri));
-  };
+  // const [imageUris,setImageUris]=useState(); //image
+  // const handleAdd=imageUri=>{
+  //   setImageUris([...imageUris,imageUri]);
+  // };
+  // const handleRemove=imageUri=>{
+  //   setImageUris(imageUris.filter(uri=>uri !== imageUri));
+  // };
   // const [category,setCategory]=useState(); //picker
   return (
     // <Screen>

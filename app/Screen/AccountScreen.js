@@ -8,6 +8,7 @@ import Separator from '../component/Separator';
 import Crad from '../component/ Crad';
 import { getAuth, signOut } from "firebase/auth";
 
+
 const menuItems=[
     {
         title:'My post',
@@ -15,6 +16,7 @@ const menuItems=[
             name:"email",
             backgoundcolor:colors.primary,
         }
+        
     },
     {
         title:'My favorite posts',
@@ -61,7 +63,7 @@ const logout =async()=> signOut(auth).then(() => {
             name={item.icon.name} backgroundColor={item.icon.backgoundcolor}
             />
             }
-            onPress={()=>navigation.navigate(item.targetScreen)}
+            onPress={()=>navigation.navigate(item.targetScreen,item."MyPost")}
             />
             )}
             />

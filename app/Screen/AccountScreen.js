@@ -15,8 +15,8 @@ const menuItems=[
         icon:{
             name:"email",
             backgoundcolor:colors.primary,
-        }
-        
+        },
+        targetScreen:"MyPost"
     },
     {
         title:'My favorite posts',
@@ -63,7 +63,7 @@ const logout =async()=> signOut(auth).then(() => {
             name={item.icon.name} backgroundColor={item.icon.backgoundcolor}
             />
             }
-            onPress={()=>navigation.navigate(item.targetScreen,item."MyPost")}
+            onPress={()=>navigation.navigate(item.targetScreen)}
             />
             )}
             />

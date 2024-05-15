@@ -8,6 +8,7 @@ function Icon({
     size=40,
     backgroundColor =colors.black,
     IconColor =colors.white,
+    onPress
 }) {
     return (
        <View style={{
@@ -18,7 +19,7 @@ function Icon({
         justifyContent:'center',
         alignItems:'center',
        }}>
-        <MaterialCommunityIcons name={name} color={IconColor} size={size * 0.5} />
+        <MaterialCommunityIcons name={name} color={IconColor} size={size * 0.5} onPress={onPress} />
        </View>
     );
 }

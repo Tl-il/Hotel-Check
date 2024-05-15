@@ -6,6 +6,7 @@ import colors from '../config/colors';
 import Icon from '../component/Icon';
 import Separator from '../component/Separator';
 import Crad from '../component/ Crad';
+import { getAuth, signOut } from "firebase/auth";
 
 const menuItems=[
     {
@@ -29,6 +30,14 @@ const menuItems=[
 ]
 
 function AccountScreen({navigation}) {
+    
+
+const auth = getAuth();
+const logout =async()=> signOut(auth).then(() => {
+    signOut? navigation.navigate('Welcome') : console.log('user not log out try again');
+
+}).catch((error) => {
+});
     return (
        <Screen style={styles.screen}>
         <View style={styles.profile}>
@@ -64,6 +73,7 @@ function AccountScreen({navigation}) {
         backgroundColor='blue'
         />
         }
+        onPress={logout}
         />
        </Screen>
     );

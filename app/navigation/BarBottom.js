@@ -1,9 +1,7 @@
 import { createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import LoginScreen from '../Screen/LoginScreen';
 import NewPost from '../Screen/NewPost' ;
 import CreateNewAccuont from '../Screen/CreateNewAccuont';
-import ListingDetiailsScreen from '../Screen/ListingDetiailsScreen';
 import FeedNavigator from './FeedNavigator';
 import AccuontNavigator from './AccuontNavigator';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
@@ -11,7 +9,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons'
 const Tab = createBottomTabNavigator();
 
 const BarBottom = () => (
-    <Tab.Navigator >
+    <Tab.Navigator screenOptions={{headerShown:false}} >
 
         <Tab.Screen
          name="Feed" 
@@ -20,6 +18,7 @@ const BarBottom = () => (
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="home" size={size} color={color} />
             ),
+            headerShown:false
           }} 
          /> 
 
@@ -36,18 +35,18 @@ const BarBottom = () => (
 
         {/* <Tab.Screen 
         name="Login" 
-        component={LoginScreen} />
+        component={LoginScreen} /> */}
 
-        <Tab.Screen 
+        {/* <Tab.Screen 
         name="New Accuont" 
-        component={CreateNewAccuont} />
+        component={CreateNewAccuont} /> */}
 
-        <Tab.Screen 
+        {/* <Tab.Screen 
         name="Lisit" 
         component={ListingDetiailsScreen} /> */}
 
-<Tab.Screen
-         name="Accounts" 
+        <Tab.Screen
+         name="Account" 
          component={AccuontNavigator} 
          options={{
             tabBarIcon: ({ color, size }) => (
@@ -56,6 +55,7 @@ const BarBottom = () => (
           }} />
 
     </Tab.Navigator>
+    
 );
 export default BarBottom;
 

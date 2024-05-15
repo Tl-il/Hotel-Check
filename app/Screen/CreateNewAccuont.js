@@ -17,7 +17,7 @@ const createUser = async ()=>  createUserWithEmailAndPassword(auth, email, passw
   .then((userCredential) => {
     const user = userCredential.user;
     alert('user created')
-    user ? navigation.navigate('Account') : console.log('user created');
+    user ? navigation.navigate('AccountScreen') : console.log('user created');
   })
   .catch((error) => {
     const errorCode = error.code;

@@ -18,7 +18,6 @@ function AccountInfo  ({onPress}) {
 
       if (user) {
         const userDocRef = doc(db, "users", user.uid);
-        const userId= user.uid;
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
@@ -33,8 +32,6 @@ function AccountInfo  ({onPress}) {
   if (!userData) {
     return <Text>Loading...</Text>;
   }
-  const pic= userData.pictureUrl;
-  
 
   return (
     <TouchableOpacity onPress={onPress}> 

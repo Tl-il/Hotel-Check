@@ -7,6 +7,7 @@ import Icon from '../component/Icon';
 import Separator from '../component/Separator';
 import Crad from '../component/ Crad';
 import { getAuth, signOut } from "firebase/auth";
+import AccountInfo from '../component/Firebase/AccountInfo';
 
 
 const menuItems=[
@@ -43,13 +44,14 @@ const logout =async()=> signOut(auth).then(() => {
     return (
        <Screen style={styles.screen}>
         <View style={styles.profile}>
-            <Crad
+            {/* <Crad
             image={require('../assets/profile.jpeg')}
             style={styles.image}
             title={'Jiara Martins'}
-            subTitle={'hello@reallygreatsite.com'}
-            
-            />
+            subTitle={'hello@reallygreatsite.com'} 
+            />  */}
+            <AccountInfo/>
+
         </View>
         <View style={styles.containr}>
             <FlatList

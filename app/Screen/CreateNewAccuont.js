@@ -7,7 +7,7 @@ import colors from '../config/colors'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Import Firestore
 import ImageInputList from '../component/Imagecompnent/ImageInputList';
-
+import { StoreUserData } from '../component/Firebase/UserData';
 
 export default function CreateNewAccuont({navigation}) {
 
@@ -34,7 +34,14 @@ const createUser = async ()=>{
       await setDoc(userDocRef, {
         name: name,
         email: email,
+        password: password,
         pictureUrl: pictureUrl,
+      });
+      await StoreUserData({
+        uid: user.uid,
+        email: user.email,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
       });
 
       alert('User created');
@@ -94,10 +101,10 @@ const createUser = async ()=>{
     onChangeText={text=>setPassword(text)}
     textContentType="password"
     secureTextEntry={true}/>
-
-    <AppText style={styles.text}> Add Profile Picture</AppText>
-        <ImageInputList/>
     
+    <ImageInputList setPictureUrl={setPictureUrl} /> 
+    <AppText style={styles.text}> Add Profile Picture</AppText>
+
     </View>
     <View style={styles.buttonContainer}>
       <AppButton title="sign up" onPress={createUser}/>

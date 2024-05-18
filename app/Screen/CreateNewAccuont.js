@@ -14,7 +14,7 @@ export default function CreateNewAccuont({navigation}) {
 const[email,setEmail]=useState();
 const[password,setPassword]=useState();
 const [name, setName] = useState('');
-const [pictureUrl, setPictureUrl] = useState('');
+const [pictureUrl, setPictureUrl] = useState();
   
 const auth = getAuth();
 const db = getFirestore();
@@ -37,12 +37,12 @@ const createUser = async ()=>{
         password: password,
         pictureUrl: pictureUrl,
       });
-      await StoreUserData({
-        uid: user.uid,
-        email: user.email,
-        displayName: user.displayName,
-        photoURL: user.photoURL,
-      });
+      // await StoreUserData({
+      //   uid: user.uid,
+      //   email: user.email,
+      //   displayName: user.displayName,
+      //   photoURL: user.photoURL,
+      // });
 
       alert('User created');
       navigation.navigate('Feed');

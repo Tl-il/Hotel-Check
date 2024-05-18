@@ -5,21 +5,36 @@ import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
 import { getAuth,signInWithEmailAndPassword} from 'firebase/auth'
+import { storeUserData } from '../component/Firebase/UserData';
 
 export default function LoginScreen({navigation}) {
-const[email,setEmail]=useState();
-const[password,setPassword]=useState();
+const[email,setEmail]=useState('');
+const[password,setPassword]=useState('');
 
 
 const auth = getAuth();
 
-const lognin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
+const login = async ()=>  {signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
-    alert('user login')
+    alert('user login successfully')
     user ? navigation.navigate('Feed') : console.log('user login');
-  })
-  .catch((error) => {
+  
+   try{ // שמירת מידע המשתמש ב-AsyncStorage
+     storeUserData({
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL ||'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profilepic.webp?alt=media&token=7b07b407-f3c8-4c0e-af0d-311f0f4e5d97',
+    });
+  } catch (error) { 
+    console.log('error saving user data:', error);
+    alert('error saving user data:', error);
+
+
+  }
+})
+  .catch((error)=>{
      const errorCode = alert(error.code);
     const errorMessage =alert(error.nativeErrorMessage);
     switch (error.code) {
@@ -39,7 +54,7 @@ const lognin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
           console.log('email or password is wrong');
           break;
   }
-})
+});
 }
   
   return (
@@ -71,7 +86,7 @@ const lognin = async ()=>  {signInWithEmailAndPassword(auth, email, password)
     />
     </View>
     <View style={styles.buttonContainer}>
-      <AppButton title="loging" onPress={lognin}/>
+      <AppButton title="loging" onPress={login}/>
       </View> 
       
       

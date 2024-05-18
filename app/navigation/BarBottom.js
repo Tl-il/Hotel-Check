@@ -6,6 +6,7 @@ import FeedNavigator from './FeedNavigator';
 import AccuontNavigator from './AccuontNavigator';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import MyPost from '../Screen/MyPost';
+import WelcomeNavigator from './WelcomeNavigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ const BarBottom = () => (
          /> 
          <Tab.Screen
          name="MyPost" 
-         component={MyPost}
+         component={WelcomeNavigator}
         //  options={{
         //     tabBarIcon: ({ color, size }) => (
         //       <MaterialCommunityIcons name="My " size={size} color={color} />

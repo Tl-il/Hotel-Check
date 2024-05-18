@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { View,StyleSheet,Alert } from 'react-native';
+import React, { useEffect,useState} from 'react';
+import { View,StyleSheet,Alert,Image} from 'react-native';
 import colors from '../../config/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableWithoutFeedback } from 'react-native';
@@ -9,6 +9,9 @@ import { set } from 'firebase/database';
 
 
 function ImageInput({imageUri, onChangeImage}) {
+    
+    const [localImageUri, setLocalImageUri] = useState(imageUri);
+    
     useEffect(() => {
         requestPermission();
     }, []);   
@@ -21,10 +24,14 @@ function ImageInput({imageUri, onChangeImage}) {
     }
     
     const handlePress = () => {
-        if (!imageUri)selectImage();
+        if (!localImageUri)selectImage();
         else {
             Alert.alert('Delete', 'Are you sure you want to delete this image?', [
-                {text: 'Yes', onPress: () => onChangeImage(null)},
+                {text: 'Yes', onPress: () => {
+                    onChangeImage(null);
+                    setLocalImageUri(null);
+                }},
+
                 {text: 'No'},
             ]);
 
@@ -38,9 +45,9 @@ function ImageInput({imageUri, onChangeImage}) {
                 quality: 0.5,
             });
                 if (!result.canceled)
-                    selectImage=result.assets[0].uri;
-                setImageUri(result.uri);
-                onChangeImage(result.uri);
+                    //selectImage=result.assets[0].uri;
+                setLocalImageUri(result.assets[0].uri);
+                onChangeImage(result.assets[0].uri);
 
             } catch (error) {
                 console.log("Error reading an image", error);
@@ -55,13 +62,8 @@ function ImageInput({imageUri, onChangeImage}) {
     return (
         <TouchableWithoutFeedback onPress={handlePress}>
     <View style={styles.container}>
-        { !imageUri && <MaterialCommunityIcons 
-        color={colors.light} 
-        name="camera" 
-        size={40} /> }
-        { imageUri && <Image
-        source={{uri:imageUri}} 
-        style={styles.image} />}
+    {!localImageUri && <MaterialCommunityIcons color={colors.light} name="camera" size={40} />}
+    {localImageUri && <Image source={{ uri: localImageUri }} style={styles.image} />}
     </View>
     </TouchableWithoutFeedback>
     );

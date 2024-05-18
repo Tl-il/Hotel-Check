@@ -67,6 +67,7 @@ const BarBottom = () => (
 
     </Tab.Navigator>
     
+    
 );
 export default BarBottom;
 

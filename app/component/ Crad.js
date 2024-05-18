@@ -2,10 +2,11 @@ import React from 'react';
 import { View,StyleSheet,Image,TouchableOpacity} from 'react-native';
 import colors from '../config/colors';
 import AppText from './AppText';
+import MyfavoritesButton from './Button/MyfavoritesButton';
 
 
 
-function  Crad({title,subTitle,image,style,onPress}) {
+function  Crad({title,subTitle,image,style,onPress,heart}) {
     return (
         <TouchableOpacity onPress={onPress}> 
       <View style={styles.card}>

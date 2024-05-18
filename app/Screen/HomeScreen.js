@@ -3,6 +3,7 @@ import Screen from '../component/Screen';
 import ListItem from '../component/ListItem';
 import Crad from '../component/ Crad';
 import { FlatList,StyleSheet } from 'react-native';
+import MyfavoritesButton from '../component/Button/MyfavoritesButton';
 
 const listhotels=[
     {
@@ -37,10 +38,11 @@ const listhotels=[
         price: 400,
 
     }
+
 ];
 function HomeScreen({navigation}) { 
     return (
-        <Screen style={styles.screen}>
+        <Screen style={styles.screen}><MyfavoritesButton/>
            <FlatList
            data={listhotels}
            keyExtractor={listing=>listing.id.toString()}
@@ -51,8 +53,10 @@ function HomeScreen({navigation}) {
            subTitle={ "⭐" + item.stars} 
            onPress={() =>navigation.navigate('ListingDetails',item)}
            />
+           
            }
            />
+           
         </Screen>
     );
 }

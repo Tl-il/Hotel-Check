@@ -4,26 +4,64 @@ import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
 import AppText from '../component/AppText'
 import colors from '../config/colors'
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Import Firestore
+import ImageInputList from '../component/Imagecompnent/ImageInputList';
 
 
 export default function CreateNewAccuont({navigation}) {
 
 const[email,setEmail]=useState();
 const[password,setPassword]=useState();
+const [name, setName] = useState('');
+const [pictureUrl, setPictureUrl] = useState('');
   
 const auth = getAuth();
-const createUser = async ()=>  createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    alert('user created')
-    user ? navigation.navigate('AccountScreen') : console.log('user created');
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
+const db = getFirestore();
+
+const createUser = async ()=>{
+  try {
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  const user = userCredential.user;
+
+  // Update user profile with name and picture URL
+  await updateProfile(user, {
+    displayName: name,
+    photoURL: pictureUrl,
   });
+
+  const userDocRef = doc(db, "users", user.uid);
+      await setDoc(userDocRef, {
+        name: name,
+        email: email,
+        pictureUrl: pictureUrl,
+      });
+
+      alert('User created');
+      navigation.navigate('Feed');
+
+    } catch (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.error(errorCode, errorMessage);
+      alert(errorMessage);
+
+
+    }
+};
+
+  
+
+  // .then((userCredential) => {
+  //   const user = userCredential.user;
+  //   alert('user created')
+  //   user ? navigation.navigate('AccountScreen') : console.log('user created');
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ..
+  // });
 
   return (
     <ImageBackground
@@ -31,9 +69,11 @@ const createUser = async ()=>  createUserWithEmailAndPassword(auth, email, passw
     source={require('../assets/newaccount.png')}>
     <View style={styles.textInput}>
 
-      <AppText style={styles.text}> Name </AppText>
-    <AppTextInput 
-    placeholder="user name"/>
+    <AppText style={styles.text}>Name</AppText>
+        <AppTextInput
+          placeholder="User name"
+          onChangeText={text => setName(text)}
+        />
 
     <AppText style={styles.text}>Email</AppText>
     <AppTextInput 
@@ -55,8 +95,9 @@ const createUser = async ()=>  createUserWithEmailAndPassword(auth, email, passw
     textContentType="password"
     secureTextEntry={true}/>
 
-    {/* <AppText style={styles.text}>Date of Birthday</AppText>
-    <AppTextInput placeholder="13/12/1992"/> */}
+    <AppText style={styles.text}>Profile Picture URL</AppText>
+        <ImageInputList/>
+    
     </View>
     <View style={styles.buttonContainer}>
       <AppButton title="sign up" onPress={createUser}/>

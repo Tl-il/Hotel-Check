@@ -14,7 +14,7 @@ import AccuontNavigator from './AccuontNavigator';
 import FeedNavigator from './FeedNavigator';
 
 const Stack = createNativeStackNavigator();
- 
+
 
 const AuthNavigator = () => (
     <Stack.Navigator>

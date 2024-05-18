@@ -14,7 +14,6 @@ function MyPost({navigation}) {
         <ImageBackground source= {require('../assets/mypost.png')}
         style={styles.background}
         >
-
         </ImageBackground>
 
     );}

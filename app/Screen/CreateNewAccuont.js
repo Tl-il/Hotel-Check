@@ -95,7 +95,7 @@ const createUser = async ()=>{
     textContentType="password"
     secureTextEntry={true}/>
 
-    <AppText style={styles.text}>Profile Picture URL</AppText>
+    <AppText style={styles.text}> Add Profile Picture</AppText>
         <ImageInputList/>
     
     </View>

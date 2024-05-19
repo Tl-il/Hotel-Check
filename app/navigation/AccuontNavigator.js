@@ -12,7 +12,6 @@ const AccuontNavigator = () => (
     <Stack.Navigator screenOptions={{ headerShown: false }}  >
         <Stack.Screen name="AccountScreen" component={AccountScreen} />
         <Stack.Screen name="Messages" component={MessagesScreen} />
-        <Stack.Screen name="Welcome" component={WelcomeNavigator}/>
     </Stack.Navigator>
 
 );

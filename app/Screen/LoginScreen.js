@@ -25,7 +25,7 @@ const login = async ()=>  {signInWithEmailAndPassword(auth, email, password)
       uid: user.uid,
       email: user.email,
       displayName: user.displayName,
-      photoURL: user.photoURL ||'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profilepic.webp?alt=media&token=7b07b407-f3c8-4c0e-af0d-311f0f4e5d97',
+      photoURL: user.photoURL ||'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profile-picture.webp?alt=media&token=356ab582-ef26-411c-ac05-bf4e65b2d863',
     });
   } catch (error) { 
     console.log('error saving user data:', error);

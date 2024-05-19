@@ -35,7 +35,7 @@ const createUser = async ()=>{
         name: name,
         email: email,
         password: password,
-        pictureUrl: pictureUrl,
+        pictureUrl: pictureUrl!== undefined ? pictureUrl : null,
       });
       // await StoreUserData({
       //   uid: user.uid,

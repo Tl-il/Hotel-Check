@@ -2,7 +2,8 @@ import React from 'react';
 import {resizeMode,ImageBackground,StyleSheet,Button, View,Image,SafeAreaView} from 'react-native';
 import AppButton from '../component/Button/AppButton';
 import BarBottom from '../navigation/BarBottom';
-
+import AppText from '../component/AppText';
+import defaultstyles from '../config/styles';
 
 function WelcomeScreen({navigation}) {
     return (
@@ -16,6 +17,9 @@ function WelcomeScreen({navigation}) {
       <AppButton title="loging" onPress={() =>navigation.navigate('Login')}/>
       <AppButton title='create new accuont' color="button" onPress={()=> navigation.navigate('New Accuont')}/>
       </View> 
+      <View style={styles.text} >
+        <AppText onPress={()=>navigation.navigate('Feed')} style={color='red'} >Login without a user</AppText>
+      </View>
             {/* <View style={styles.letstartButton}>
             <AppButton
         title="lets start"
@@ -43,6 +47,11 @@ const styles = StyleSheet.create({
     marginLeft:'12%',
     marginBottom:'85%',
     },
+    text:{
+        alignItems: 'center',
+        marginBottom:30,
+    }
+    
 
     
 })

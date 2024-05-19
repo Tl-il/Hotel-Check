@@ -4,9 +4,9 @@ import { Text} from 'react-native';
 import styles from '../../config/styles';
 
 
-function AppText({children,style, color}) {
+function AppText({children,style, color,onPress}) {
     return (
-       <Text style={[styles.text, style, color]}>{children}</Text>
+       <Text style={[styles.text, style, color]} onPress={onPress}>{children}</Text>
     );
 }
 export default AppText;

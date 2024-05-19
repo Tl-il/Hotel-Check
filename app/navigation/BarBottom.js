@@ -24,16 +24,16 @@ function BarBottom (){
             headerShown:false
           }} 
          /> 
-         <Tab.Screen
+         {/* <Tab.Screen
          name="MyPost" 
          component={WelcomeNavigator}
-        //  options={{
-        //     tabBarIcon: ({ color, size }) => (
-        //       <MaterialCommunityIcons name="My " size={size} color={color} />
-        //     ),
-        //     headerShown:false
-          // }} 
-         /> 
+         options={{
+            tabBarIcon: ({ color, size }) => (
+              <MaterialCommunityIcons name="My " size={size} color={color} />
+            ),
+            headerShown:false
+          }} 
+         />  */}
 
         
 

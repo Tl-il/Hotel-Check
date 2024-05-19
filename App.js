@@ -30,28 +30,29 @@ import * as Permissions from 'expo-permissions';
 import * as ImagePicker from 'expo-image-picker';
 import ImageInput from './app/component/Imagecompnent/ImageInput';
 import ImageInputList from './app/component/Imagecompnent/ImageInputList';
+import WelcomeNavigator from './app/navigation/WelcomeNavigator';
 
 
 
 //navigation:
-const Tweets = () => (
-  <Screen>
-    <Text>Tweets</Text>
-  </Screen>
-);
+// const Tweets = () => (
+//   <Screen>
+//     <Text>Tweets</Text>
+//   </Screen>
+// );
 
-const TweetDetails = () => (
-  <Screen>
-    <Text>Tweet Details</Text>
-  </Screen>
-);
- const Stack = createNativeStackNavigator();
- const StackNavigator = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Tweets" component={Tweets} />
-    <Stack.Screen name="TweetDetails" component={TweetDetails} />
-  </Stack.Navigator>
- )
+// const TweetDetails = () => (
+//   <Screen>
+//     <Text>Tweet Details</Text>
+//   </Screen>
+// );
+//  const Stack = createNativeStackNavigator();
+//  const StackNavigator = () => (
+//   <Stack.Navigator>
+//     <Stack.Screen name="Tweets" component={Tweets} />
+//     <Stack.Screen name="TweetDetails" component={TweetDetails} />
+//   </Stack.Navigator>
+//  )
 
 // const categories=[
 //   {label:"דירוג",value:1},
@@ -79,7 +80,7 @@ export default function App() {
     //navigation:
 
     <NavigationContainer theme={navigationTheme}>
-      <BarBottom/>
+      <WelcomeNavigator/>
     </NavigationContainer>
 
 

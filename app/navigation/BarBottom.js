@@ -10,7 +10,8 @@ import WelcomeNavigator from './WelcomeNavigator';
 
 const Tab = createBottomTabNavigator();
 
-const BarBottom = () => (
+function BarBottom (){
+    return(
     <Tab.Navigator screenOptions={{headerShown:false}} >
 
         <Tab.Screen
@@ -68,8 +69,9 @@ const BarBottom = () => (
 
     </Tab.Navigator>
     
-    
+        
 );
+}
 export default BarBottom;
 
 // להוסיף איקונים ליד השמות

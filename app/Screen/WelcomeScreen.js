@@ -4,6 +4,7 @@ import AppButton from '../component/Button/AppButton';
 import BarBottom from '../navigation/BarBottom';
 import AppText from '../component/AppText';
 import defaultstyles from '../config/styles';
+import colors from '../config/colors';
 
 function WelcomeScreen({navigation}) {
     return (
@@ -18,7 +19,7 @@ function WelcomeScreen({navigation}) {
       <AppButton title='create new accuont' color="button" onPress={()=> navigation.navigate('New Accuont')}/>
       </View> 
       <View style={styles.text} >
-        <AppText onPress={()=>navigation.navigate('Feed')} style={color='red'} >Login without a user</AppText>
+        <AppText onPress={()=>navigation.navigate('Feed')} style={{color:colors.litegray}} >Login without a user</AppText>
       </View>
             {/* <View style={styles.letstartButton}>
             <AppButton
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     },
     text:{
         alignItems: 'center',
-        marginBottom:30,
+        marginBottom:40,
     }
     
 

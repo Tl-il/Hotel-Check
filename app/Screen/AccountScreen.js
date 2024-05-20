@@ -1,13 +1,14 @@
 import React from 'react';
 import Screen from '../component/Screen';
 import ListItem from '../component/ListItem';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList,resizeMode } from 'react-native';
 import colors from '../config/colors';
 import Icon from '../component/Icon';
 import Separator from '../component/Separator';
 import Crad from '../component/ Crad';
 import { getAuth, signOut } from "firebase/auth";
 import AccountInfo from '../component/Firebase/AccountInfo';
+import AppButton from '../component/Button/AppButton';
 
 
 
@@ -52,7 +53,7 @@ function AccountScreen({ navigation }) {
             subTitle={'hello@reallygreatsite.com'} 
             />  */}
                 <AccountInfo/>
-
+                
             </View>
             <View style={styles.containr}>
                 <FlatList

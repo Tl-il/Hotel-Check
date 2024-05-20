@@ -6,6 +6,7 @@ import WelcomeNavigator from './WelcomeNavigator';
 
 
 
+
 const Stack = createNativeStackNavigator();
 
 const AccuontNavigator = () => (

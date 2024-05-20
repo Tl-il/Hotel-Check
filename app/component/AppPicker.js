@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {View,StyleSheet, TouchableWithoutFeedback, Modal, Button, FlatList } from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
-import colors from '../config/colors';
 import AppText from './AppText';
 import defaultstyles from '../config/styles';
 import Screen from './Screen';
@@ -9,18 +8,19 @@ import PickerItem from './PickerItem';
 
 
 
-function AppPicker({items,icon,Placeholder,onSelectItem,selectedItem,PickerItemComponent=PickerItem,}) {
+function AppPicker({style,items,icon,placeholder,onSelectItem,selectedItem,PickerItemComponent=PickerItem,}) {
     [modalVisible,setModalVisible]=useState(false);
 
     return (
         <>
         <TouchableWithoutFeedback onPress={()=>setModalVisible(true)}>
         <View style={styles.container}>
-        <MaterialCommunityIcons
+        {icon && (<MaterialCommunityIcons
         name={icon} 
         size={20} 
         colors={defaultstyles.colors.grayflash} />
-        <AppText style={styles.text}>{selectedItem ? selectedItem.label:Placeholder}</AppText>
+        )}
+        <AppText style={[styles.text,style]}>{selectedItem ? selectedItem.label:placeholder}</AppText>
         <MaterialCommunityIcons
         name='chevron-down'
         size={20} 

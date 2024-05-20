@@ -24,19 +24,7 @@ function BarBottom (){
             headerShown:false
           }} 
          /> 
-         {/* <Tab.Screen
-         name="MyPost" 
-         component={WelcomeNavigator}
-         options={{
-            tabBarIcon: ({ color, size }) => (
-              <MaterialCommunityIcons name="My " size={size} color={color} />
-            ),
-            headerShown:false
-          }} 
-         />  */}
-
         
-
         <Tab.Screen 
         name="Post" 
         component={NewPost} 
@@ -46,17 +34,6 @@ function BarBottom (){
             ),
           }} />  
 
-        {/* <Tab.Screen 
-        name="Login" 
-        component={LoginScreen} /> */}
-
-        {/* <Tab.Screen 
-        name="New Accuont" 
-        component={CreateNewAccuont} /> */}
-
-        {/* <Tab.Screen 
-        name="Lisit" 
-        component={ListingDetiailsScreen} /> */}
 
         <Tab.Screen
          name="Account" 

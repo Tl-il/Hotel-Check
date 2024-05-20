@@ -35,15 +35,14 @@ function AccountInfo  ({onPress}) {
   if (!userData) {
     return(
     <View>
-    <Text>Guest profile</Text>
-    <AppButton title="Log In" onPress={() =>navigation.navigate('Login')}/>
-    <AppButton title="Create Account" onPress={() =>navigation.navigate('New Accuont') }/>
+    <AppText style={styles.title}>Welcome to Hotel check</AppText>
+    <AppButton title="LogIn or Create Account" onPress={() =>navigation.navigate('Welcome')}/>
     </View>
   ); 
   }
 
   return (
-    <TouchableOpacity onPress={onPress}> 
+ <View>
     <View style={styles.card}>
       <Image  source={{uri: userData.pictureUrl || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profile-picture.webp?alt=media&token=356ab582-ef26-411c-ac05-bf4e65b2d863'}} style={styles.image}/>
 
@@ -64,8 +63,12 @@ function AccountInfo  ({onPress}) {
      <AppText style={styles.title}>Hello {userData?.name}</AppText>
       <AppText style={styles.subTitle} >{userData?.email}</AppText>
       </View>
+      <View>
+      <AppButton style={styles.appbutton} title='Edit Profile' onPress={() => navigation.navigate('Edit Account')} />
+      </View>
     </View>
-    </TouchableOpacity>
+    </View>
+    
   );
 }
 const styles = StyleSheet.create({
@@ -89,56 +92,17 @@ const styles = StyleSheet.create({
 
   title:{
       marginBottom:7,
+      paddingTop:20,
 
   },
   subTitle:{
       fontWeight:'bold',
   },
   appbutton:{
+    height:'auto',
+    width:'auto',
   }
 
 })
-//     <View style={styles.container}>
-//         <Crad
-//             // image={{uri: userData.pictureUrl}}
-//             image={userData?.profileImageUrl ? (
-//               <Image
-//                 style={styles.profile}
-//                 source={{ uri: userData.profileImageUrl }}
-//               />
-//             ) : (
-//               <Image
-//                 style={styles.profile}
-//                 source={require("../../assets/profile.jpeg")}
-//               />)}
-//             style={styles.profileImage}
-//             title={userData.name}
-//             subTitle={userData.email} 
-//             />
-//       <Image source={{ uri: userData.pictureUrl }} style={styles.profileImage} />
-//       <Text style={styles.text}>Name: {userData.name}</Text>
-//       <Text style={styles.text}>Email: {userData.email}</Text>
-//     </View>
-//   );
-// };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor:'white',
-//   },
-//   profileImage: {
-//     width: 100,
-//     height: 100,
-//     borderRadius: 50,
-//     marginBottom: 20,
-//   },
-//   text: {
-//     fontSize: 18,
-//     color: colors.black,
-//   },
-// });
 
 export default AccountInfo;

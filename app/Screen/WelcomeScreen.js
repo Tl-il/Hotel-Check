@@ -21,12 +21,6 @@ function WelcomeScreen({navigation}) {
       <View style={styles.text} >
         <AppText onPress={()=>navigation.navigate('Feed')} style={{color:colors.litegray}} >Login without a user</AppText>
       </View>
-            {/* <View style={styles.letstartButton}>
-            <AppButton
-        title="lets start"
-        onPress={() => navigation.navigate("Login")}/>
-        </View>
-        </View>    */}
     </ImageBackground>
     ); 
 

@@ -21,15 +21,15 @@ const menuItems = [
         },
         targetScreen: "MyPost"
     },
-    {
-        title: 'My favorite posts',
-        icon: {
-            name: "heart",
-            backgoundcolor: colors.primary,
-        },
+    // {
+    //     title: 'My favorite posts',
+    //     icon: {
+    //         name: "heart",
+    //         backgoundcolor: colors.primary,
+    //     },
 
-        targetScreen: 'Messages',
-    },
+    //     targetScreen: 'Messages',
+    // },
 
 
 ]
@@ -53,7 +53,7 @@ function AccountScreen({ navigation }) {
             subTitle={'hello@reallygreatsite.com'} 
             />  */}
                 <AccountInfo/>
-                
+
             </View>
             <View style={styles.containr}>
                 <FlatList

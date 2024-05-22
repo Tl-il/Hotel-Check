@@ -42,7 +42,7 @@ const NewPost = ({ navigation }) => {
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
         if (user) {
-          createPost(user.uid, postRating, postContent,postLocation,postImage);
+          createPost(user.email, postRating, postContent,postLocation,postImage);
         }
       });
   

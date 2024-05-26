@@ -1,8 +1,8 @@
 import React, { useEffect,useState} from 'react';
-import { View,StyleSheet,Alert,Image} from 'react-native';
+import { View,StyleSheet,Alert,Image, Button} from 'react-native';
 import colors from '../../config/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { TouchableWithoutFeedback } from 'react-native';
+import { TouchableWithoutFeedback} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { set } from 'firebase/database';
 
@@ -24,11 +24,12 @@ function ImageInput({imageUri, onChangeImage}) {
     }
     
     const handlePress = () => {
-        if (!localImageUri)selectImage();
-        else {
+        if (!localImageUri)selectImage()
+
+            else
             Alert.alert('Delete', 'Are you sure you want to delete this image?', [
                 {text: 'Yes', onPress: () => {
-                    onChangeImage(null);
+                    // onChangeImage(null);
                     setLocalImageUri(null);
                 }},
 
@@ -36,7 +37,8 @@ function ImageInput({imageUri, onChangeImage}) {
             ]);
 
         }
-    }
+    
+    
 
     const selectImage = async () => {
         try {
@@ -54,6 +56,13 @@ function ImageInput({imageUri, onChangeImage}) {
             }
            
         }
+        const handleUploadImage = async () => {
+            if (imageUri) {
+              const url = await uploadImage(imageUri);
+              setUploadedImageUrl(url);
+              await saveImageUrlToFirestore(url);
+            }
+          };
 
     
      

@@ -30,7 +30,7 @@ const NewPost = ({ navigation }) => {
           postRating: postRating,
           postContent: postContent,
           postLocation: postLocation,
-          postImage: postImage,
+          postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profilepic.webp?alt=media&token=7b07b407-f3c8-4c0e-af0d-311f0f4e5d97',
         });
         console.log("Post created!");
         alert("Post created!");
@@ -38,6 +38,7 @@ const NewPost = ({ navigation }) => {
         console.error("Error creating post: ", error);
       }
     };
+    
   
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
@@ -63,7 +64,7 @@ const NewPost = ({ navigation }) => {
         <View style={styles.buttonContainer}>
           <AppButton title="share" onPress={() => {
           if (auth.currentUser) {
-            createPost(auth.currentUser.uid, postRating , postContent, postLocation, postImage);
+            createPost(auth.currentUser.email, postRating , postContent, postLocation, postImage);
           } else {
             console.error("No user is logged in");
           }

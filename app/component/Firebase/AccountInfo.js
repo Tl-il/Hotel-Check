@@ -45,20 +45,6 @@ function AccountInfo  ({onPress}) {
  <View>
     <View style={styles.card}>
       <Image  source={{uri: userData.pictureUrl || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profile-picture.webp?alt=media&token=356ab582-ef26-411c-ac05-bf4e65b2d863'}} style={styles.image}/>
-
-      {/* {userData?.profileImageUrl ? (
-        <Image
-          style={styles.image}
-          source={{ uri: userData.profileImageUrl }}
-        />
-      
-    
-      ) : (
-        <Image
-          style={styles.image}
-          source={require("../../assets/profile.jpeg")}
-        />
-      )} */}
       <View style={styles.detailsContanier}>
      <AppText style={styles.title}>Hello {userData?.name}</AppText>
       <AppText style={styles.subTitle} >{userData?.email}</AppText>

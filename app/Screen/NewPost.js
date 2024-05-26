@@ -30,9 +30,11 @@ const NewPost = ({ navigation }) => {
           postRating: postRating,
           postContent: postContent,
           postLocation: postLocation,
-          postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profilepic.webp?alt=media&token=7b07b407-f3c8-4c0e-af0d-311f0f4e5d97',
+          postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg?alt=media&token=de546de9-293c-41bd-b63b-9e4d9d062220',
         });
+        
         console.log("Post created!");
+        navigation.navigate('MyPost');
         alert("Post created!");
       } catch (error) {
         console.error("Error creating post: ", error);
@@ -42,9 +44,13 @@ const NewPost = ({ navigation }) => {
   
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
-        if (user) {
-          createPost(user.email, postRating, postContent,postLocation,postImage);
+        if (!user) {
+          alert("No user is logged in, please log in to create a post.");
+          navigation.navigate('Welcome');
         }
+
+
+        
       });
   
       return () => unsubscribe();

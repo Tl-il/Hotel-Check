@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, ImageBackground, Text, View,alert, Image } from 'react-native';
+import { FlatList, StyleSheet, ImageBackground, Text, View,alert, Image ,Alert} from 'react-native';
 import 'firebase/storage';
 import colors from "../config/colors";
-import { collection, getFirestore, getDocs } from "firebase/firestore"; 
+import { collection, getFirestore, getDocs, deleteDoc ,doc } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
 import Crad from '../component/ Crad';
-import { FontAwesome } from '@expo/vector-icons';
+import Entypo from '@expo/vector-icons/Entypo';
+
 
 function MyPost({ navigation }) { 
   const [posts, setPosts] = useState([]);
@@ -37,6 +38,17 @@ function MyPost({ navigation }) {
 
     return () => unsubscribe();
   }, []);
+
+  const handleDelete = async (postId) => {
+    try {
+      await deleteDoc(doc(db, "posts", postId));
+      setPosts(posts.filter(post => post.id !== postId));
+      Alert.alert("Post deleted!");
+    } catch (error) {
+      console.error("Error deleting post: ", error);
+      Alert.alert("Error deleting post");
+    }
+  };
   
 
   return (
@@ -52,10 +64,23 @@ function MyPost({ navigation }) {
             title={item.postRating}
             subTitle={item.postContent}
             uri={item.postImage}
-            IconComponent={<FontAwesome name="edit" size={24} color="black" style={{padding: 10}}
-            onPress={()=>navigation.navigate('EditPost', { postId: item.id })} />}
+            IconComponent={
+              <View style={styles.iconContainer}>
+                <Entypo
+                  name="edit"
+                  size={24}
+                  color="black"
+                  onPress={() => navigation.navigate('EditPost', { postId: item.id })}
+                />
+                <Entypo
+                  name="trash"
+                  size={24}
+                  color="black"
+                  onPress={() => handleDelete(item.id)}
+                />
+                </View>
+            }
           />
-         
         )}
         ListEmptyComponent={<Text style={styles.emptyMessage}>No posts found.</Text>} // הודעה כאשר אין פוסטים
       />

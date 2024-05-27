@@ -7,6 +7,7 @@ import navigationTheme from './navigationTheme';
 import EditAccountScreen from '../Screen/EditAccountScreen';
 import BarBottom from './BarBottom';
 import MyPost from '../Screen/MyPost';
+import EditPost from '../Screen/EditPost';
 
 
 
@@ -23,6 +24,7 @@ const WelcomeNavigator =()=> (
             <Stack.Screen name="Feed" component={BarBottom}/>
             <Stack.Screen name="Post" component={BarBottom}/>
             <Stack.Screen name="MyPost" component={MyPost}options={{headerShown:true}}/>
+            <Stack.Screen name="EditPost" component={EditPost}/>
         </Stack.Navigator>
 )
 

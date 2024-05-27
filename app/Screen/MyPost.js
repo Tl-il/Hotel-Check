@@ -5,6 +5,7 @@ import colors from "../config/colors";
 import { collection, getFirestore, getDocs } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
 import Crad from '../component/ Crad';
+import { FontAwesome } from '@expo/vector-icons';
 
 function MyPost({ navigation }) { 
   const [posts, setPosts] = useState([]);
@@ -51,6 +52,8 @@ function MyPost({ navigation }) {
             title={item.postRating}
             subTitle={item.postContent}
             uri={item.postImage}
+            IconComponent={<FontAwesome name="edit" size={24} color="black" style={{padding: 10}}
+            onPress={()=>navigation.navigate('EditPost', { postId: item.id })} />}
           />
          
         )}

@@ -10,11 +10,12 @@ import ImageInputList from "../component/Imagecompnent/ImageInputList";
 import colors from "../config/colors";
 import { addDoc, collection ,getFirestore } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
+import PickerItem from "../component/PickerItem";
 
 
 
 
-const NewPost = ({ navigation }) => {
+const NewPost = ({ navigation,route }) => {
     const [postRating, setPostRating] = useState('');
     const [postLocation, setPostLocation] = useState('');
     const [postContent, setPostContent] = useState('');
@@ -55,13 +56,13 @@ const NewPost = ({ navigation }) => {
   
       return () => unsubscribe();
     }, []);
-  
+    const listings = route.params;
     return (
       <ImageBackground
         style={styles.background}
         source={require('../assets/newpost.png')}>
         <View style={styles.textInput}>
-          <AppPicker placeholder="The name of the hotel" style={styles.pickr}/>
+          <AppPicker placeholder="The name of the hotel" style={styles.pickr} ></AppPicker>
           <AppTextInput placeholder="rating" onChangeText={text => setPostRating(text)}/>
           <AppTextInput placeholder="location" onChangeText={text => setPostLocation(text)}/>
           <AppTextInput placeholder="Tell about your experience.." onChangeText={text => setPostContent(text)}/>

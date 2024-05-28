@@ -62,7 +62,7 @@ const NewPost = ({ navigation,route }) => {
         style={styles.background}
         source={require('../assets/newpost.png')}>
         <View style={styles.textInput}>
-          <AppPicker placeholder="The name of the hotel" style={styles.pickr} ></AppPicker>
+          <AppPicker placeholder="The name of the hotel"  style={styles.pickr} />
           <AppTextInput placeholder="rating" onChangeText={text => setPostRating(text)}/>
           <AppTextInput placeholder="location" onChangeText={text => setPostLocation(text)}/>
           <AppTextInput placeholder="Tell about your experience.." onChangeText={text => setPostContent(text)}/>

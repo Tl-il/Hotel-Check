@@ -106,7 +106,12 @@ const styles = StyleSheet.create({
     marginTop: 250,
     fontSize: 24,
     color: colors.litegray
-  }
+  },
+  iconContainer: {
+    width: 70,
+    marginLeft: '85%',
+    flexDirection: 'row',
+  },
 });
 
 export default MyPost;

@@ -4,7 +4,7 @@ import WelcomeScreen from '../Screen/WelcomeScreen';
 import LoginScreen from '../Screen/LoginScreen';
 import CreateNewAccuont from '../Screen/CreateNewAccuont';
 import navigationTheme from './navigationTheme';
-import EditAccountScreen from '../Screen/EditAccountScreen';
+import EditProfileScreen from '../Screen/EditProfileScree';
 import BarBottom from './BarBottom';
 import MyPost from '../Screen/MyPost';
 import EditPost from '../Screen/EditPost';
@@ -31,19 +31,19 @@ const WelcomeNavigator =()=> {
       return subscriber; // unsubscribe on unmount
     }, []);
   
-    if (initializing) return <TestPage />; //לבדוק בהמשך אם צריך את הדף הזה?!  
+    // if (initializing) return <TestPage />; //לבדוק בהמשך אם צריך את הדף הזה?!  
 
     return(
-        <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName={user ? "Feed" : "Welcome"} >
+        <Stack.Navigator screenOptions={{headerShown:false}} >
             <Stack.Screen name="Welcome" component={WelcomeScreen}/>
             <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:true}} />
             <Stack.Screen name="New Accuont" component={CreateNewAccuont} options={{headerShown:true}}/>
-            <Stack.Screen name="Edit Account" component={EditAccountScreen} options={{headerShown:true}}/>
-            <Stack.Screen name="Home" component={BarBottom}/>
             <Stack.Screen name="Feed" component={BarBottom}/>
+            <Stack.Screen name="Home" component={BarBottom}/>
             <Stack.Screen name="Post" component={BarBottom}/>
             <Stack.Screen name="MyPost" component={MyPost}options={{headerShown:true}}/>
-            <Stack.Screen name="EditPost" component={EditPost}/>
+            <Stack.Screen name="EditPost" component={EditPost} options={{headerShown:true}}/>
+            <Stack.Screen name="Edit Account" component={EditProfileScreen} options={{headerShown:true}}/>
         </Stack.Navigator>
 )
 };

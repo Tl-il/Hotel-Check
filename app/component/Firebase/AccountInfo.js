@@ -47,7 +47,7 @@ function AccountInfo  ({onPress}) {
       <Image  source={{uri: userData.pictureUrl || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profile-picture.webp?alt=media&token=356ab582-ef26-411c-ac05-bf4e65b2d863'}} style={styles.image}/>
       <View style={styles.detailsContanier}>
      <AppText style={styles.title}>Hello {userData?.name}</AppText>
-      <AppText style={styles.subTitle} >{userData?.email}</AppText>
+      <AppText style={styles.subTitle} >email: {userData?.email}</AppText>
       </View>
       <View>
       <AppButton style={styles.appbutton} title='Edit Profile' onPress={() => navigation.navigate('Edit Account')} />

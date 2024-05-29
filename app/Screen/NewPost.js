@@ -23,11 +23,17 @@ const NewPost = ({ navigation,route }) => {
 
     const auth = getAuth();
     const db = getFirestore();
+    const user = auth.currentUser;
   
-    const createPost = async (userId, postRating, postContent,postLocation,postImage) => {
+    const createPost = async () => {
+      if (!postRating || !postLocation || !postContent) {
+        alert("All fields are required.");
+        return;
+      }
+  
       try {
         await addDoc(collection(db, "posts"), {
-          userId: userId,
+          userId: user.uid,
           postRating: postRating,
           postContent: postContent,
           postLocation: postLocation,
@@ -71,7 +77,7 @@ const NewPost = ({ navigation,route }) => {
         <View style={styles.buttonContainer}>
           <AppButton title="share" onPress={() => {
           if (auth.currentUser) {
-            createPost(auth.currentUser.email, postRating , postContent, postLocation, postImage);
+            createPost(auth.currentUser.uid, postRating , postContent, postLocation, postImage);
           } else {
             console.error("No user is logged in");
           }

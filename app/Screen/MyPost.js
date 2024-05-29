@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, StyleSheet, ImageBackground, Text, View,alert, Image ,Alert} from 'react-native';
+import { FlatList, StyleSheet, ImageBackground, Text, View, Alert } from 'react-native';
 import 'firebase/storage';
 import colors from "../config/colors";
-import { collection, getFirestore, getDocs, deleteDoc ,doc } from "firebase/firestore"; 
+import { collection, getFirestore, getDocs, deleteDoc, doc, query, where } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
-import Crad from '../component/ Crad';
+import Crad from  "../component/ Crad";
 import Entypo from '@expo/vector-icons/Entypo';
-
 
 function MyPost({ navigation }) { 
   const [posts, setPosts] = useState([]);
@@ -14,16 +13,22 @@ function MyPost({ navigation }) {
   const db = getFirestore();
 
   const fetchPosts = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(db, "posts"));
-      const postsList = querySnapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      setPosts(postsList);
-      console.log("Fetched posts: ", postsList); // הוסף לוג כאן
-    } catch (error) {
-      console.error("Error fetching posts: ", error);
+    const user = auth.currentUser;
+    if (user) {
+      const q = query(collection(db, 'posts'), where("userId", "==", user.uid));
+      try {
+        const querySnapshot = await getDocs(q);
+        const posts = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setPosts(posts);
+        console.log('User posts:', posts);
+      } catch (e) {
+        console.error('Error fetching user posts:', e);
+      }
+    } else {
+      console.log('No user is signed in.');
     }
   };
 
@@ -32,7 +37,7 @@ function MyPost({ navigation }) {
       if (user) {
         fetchPosts();
       } else {
-        alert("No user is logged in"); 
+        Alert.alert("No user is logged in"); 
       }
     });
 
@@ -49,7 +54,6 @@ function MyPost({ navigation }) {
       Alert.alert("Error deleting post");
     }
   };
-  
 
   return (
     <ImageBackground 
@@ -57,8 +61,8 @@ function MyPost({ navigation }) {
       style={styles.background}>
       <FlatList
         data={posts}
-        keyExtractor={posts => posts.id.toString()}
-        renderItem={({item}) => (
+        keyExtractor={post => post.id.toString()}
+        renderItem={({ item }) => (
           <Crad
             style={styles.postContainer}
             title={item.postRating}
@@ -78,16 +82,15 @@ function MyPost({ navigation }) {
                   color="black"
                   onPress={() => handleDelete(item.id)}
                 />
-                </View>
+              </View>
             }
           />
         )}
-        ListEmptyComponent={<Text style={styles.emptyMessage}>No posts found.</Text>} // הודעה כאשר אין פוסטים
+        ListEmptyComponent={<Text style={styles.emptyMessage}>No posts found.</Text>}
       />
     </ImageBackground>
   );
 }
-
 
 const styles = StyleSheet.create({
   background: {
@@ -95,11 +98,6 @@ const styles = StyleSheet.create({
   },
   postContainer: {
     padding: 20,
-
-  },
-  postTitle: {
-    fontSize: 20,
-    fontWeight: 'bold'
   },
   emptyMessage: {
     textAlign: 'center',

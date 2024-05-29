@@ -12,6 +12,7 @@ const listhotels=[
         stars:4.3,
         image: require('../assets/hotel1.jpeg'),
         price: 200,
+        
 
     },
     {

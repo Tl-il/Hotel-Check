@@ -16,10 +16,11 @@ function WelcomeScreen({navigation}) {
   const checkLoggedInUser = async () => {
     try {
       const userLoggedIn = await getUserData('userLoggedIn');
-      if (userLoggedIn) {
+      if (!userLoggedIn) {
         navigation.navigate('Home');
       }
     } catch (error) {
+
       console.error('Error checking user logged in status:', error);
     }
   };

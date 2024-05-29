@@ -11,6 +11,8 @@ import colors from "../config/colors";
 import { addDoc, collection ,getFirestore } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
 import PickerItem from "../component/PickerItem";
+import StarRating from "react-native-star-rating";
+import ListingDetiailsScreen from "./ListingDetiailsScreen";
 
 
 
@@ -62,14 +64,14 @@ const NewPost = ({ navigation,route }) => {
   
       return () => unsubscribe();
     }, []);
-    const listings = route.params;
+    const listing = route.params;
     return (
       <ImageBackground
         style={styles.background}
         source={require('../assets/newpost.png')}>
         <View style={styles.textInput}>
-          <AppPicker placeholder="The name of the hotel"  style={styles.pickr} />
-          <AppTextInput placeholder="rating" onChangeText={text => setPostRating(text)}/>
+          <AppPicker placeholder="The name of the hotel" PickerItemComponent={listing.title}  style={styles.pickr} />
+          <StarRating disabled={false} maxStars={5} rating={postRating} selectedStar={(rating) => setPostRating(rating)} fullStarColor={'gold'}/>
           <AppTextInput placeholder="location" onChangeText={text => setPostLocation(text)}/>
           <AppTextInput placeholder="Tell about your experience.." onChangeText={text => setPostContent(text)}/>
           <ImageInputList  onAddImage={uri => setPostImage(uri)} />

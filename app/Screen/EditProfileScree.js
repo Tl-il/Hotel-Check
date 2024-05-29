@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet, Alert,alert } from 'react-native';
+import { View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
 import { getAuth, updateProfile,signOut } from 'firebase/auth';
 import ImageInputList from '../component/Imagecompnent/ImageInputList'; // או כל רכיב אחר להעלאת תמונות
 import AppButton from '../component/Button/AppButton'; // רכיב כפתור
@@ -63,7 +63,7 @@ const UpdateProfileScreen = ({ navigation }) => {
         setName(user.displayName);
         setPictureUrl(user.photoURL);
         
-      signOut ? navigation.navigate('Welcome') : alert('user not log out try again');
+       navigation.navigate('Account')
       }
     } catch (error) {
       console.error('Error updating user profile:', error);

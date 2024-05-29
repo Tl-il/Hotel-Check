@@ -30,7 +30,7 @@ function AccountInfo  ({onPress}) {
     };
 
     fetchUserData();
-  }, []);
+  }, [userData]);
 
   if (!userData) {
     return(

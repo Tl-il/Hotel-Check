@@ -27,8 +27,10 @@ function ListingDetiailsScreen({route}) {
             subTitle="4.3 stars"/>
             <LikeIcon/>
             </View>
+        
         </View>
-    );
+    );//1.לשייך את השם המלון לפוסט 
+    //2.ליבא את השם משתמש +הפוסט שלו לתוך המלון
 }
 const styles = StyleSheet.create({
     image:{

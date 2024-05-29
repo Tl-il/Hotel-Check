@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {resizeMode,ImageBackground,StyleSheet,Button, View,Image,SafeAreaView} from 'react-native';
 import AppButton from '../component/Button/AppButton';
 import BarBottom from '../navigation/BarBottom';
 import AppText from '../component/AppText';
 import defaultstyles from '../config/styles';
 import colors from '../config/colors';
+import { getUserData } from '../component/Firebase/UserData';
+
 
 function WelcomeScreen({navigation}) {
+  useEffect(() => {
+    checkLoggedInUser();
+  }, []);
+
+  const checkLoggedInUser = async () => {
+    try {
+      const userLoggedIn = await getUserData('userLoggedIn');
+      if (userLoggedIn) {
+        navigation.navigate('Home');
+      }
+    } catch (error) {
+      console.error('Error checking user logged in status:', error);
+    }
+  };
     return (
     <ImageBackground
     style={styles.background} 

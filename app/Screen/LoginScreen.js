@@ -14,11 +14,12 @@ const[password,setPassword]=useState('');
 
 const auth = getAuth();
 
-const login = async ()=>  {signInWithEmailAndPassword(auth, email, password)
+const login = async ()=>  {
+  signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     const user = userCredential.user;
     alert('user login successfully')
-    user ? navigation.navigate('Feed') : console.log('user login');
+    
   
    try{ // שמירת מידע המשתמש ב-AsyncStorage
      storeUserData({
@@ -27,6 +28,7 @@ const login = async ()=>  {signInWithEmailAndPassword(auth, email, password)
       displayName: user.displayName,
       photoURL: user.photoURL ||'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/profile-picture.webp?alt=media&token=356ab582-ef26-411c-ac05-bf4e65b2d863',
     });
+    user ? navigation.navigate('Feed') : console.log('user login');
   } catch (error) { 
     console.log('error saving user data:', error);
     alert('error saving user data:', error);

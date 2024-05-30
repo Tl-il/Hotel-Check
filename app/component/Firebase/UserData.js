@@ -5,6 +5,9 @@ export const storeUserData = async (user) => {
   try {
     const jsonValue = JSON.stringify(user);
     await AsyncStorage.setItem('@user_data', jsonValue);
+    const value = await AsyncStorage.getItem('@user_data');
+    const userValue = JSON.parse(value);
+    console.log('User data stored:', userValue);
   } catch (e) {
     console.error("Error storing user data", e);
   }

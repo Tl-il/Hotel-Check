@@ -4,6 +4,7 @@ import ListItem from '../component/ListItem';
 import Crad from '../component/ Crad';
 import { FlatList,StyleSheet } from 'react-native';
 import MyfavoritesButton from '../component/Button/MyfavoritesButton';
+import routes from '../navigation/routes';
 
 const listhotels=[
     {
@@ -52,7 +53,7 @@ function HomeScreen({navigation}) {
            image={item.image}  
            title={item.title}
            subTitle={ "⭐" + item.stars} 
-           onPress={() =>navigation.navigate('ListingDetails',item)}
+           onPress={() =>navigation.navigate(routes.LISTING_DETAILS,item)}
            />
            
            }

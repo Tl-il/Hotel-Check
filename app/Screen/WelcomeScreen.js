@@ -6,6 +6,7 @@ import AppText from '../component/AppText';
 import defaultstyles from '../config/styles';
 import colors from '../config/colors';
 import { getUserData } from '../component/Firebase/UserData';
+import routes from '../navigation/routes';
 
 
 function WelcomeScreen({navigation}) {
@@ -16,8 +17,8 @@ function WelcomeScreen({navigation}) {
   const checkLoggedInUser = async () => {
     try {
       const userLoggedIn = await getUserData('userLoggedIn');
-      if (userLoggedIn) {
-        navigation.navigate('Home');
+      if (!userLoggedIn) {
+        navigation.navigate('Welcome');
       }
     } catch (error) {
 
@@ -32,8 +33,8 @@ function WelcomeScreen({navigation}) {
       <View SafeAreaView style={styles.container} >
       </View>
     <View style={styles.letstartButton}>
-      <AppButton title="loging" onPress={() =>navigation.navigate('Login')}/>
-      <AppButton title='create new accuont' color="button" onPress={()=> navigation.navigate('New Accuont')}/>
+      <AppButton title="loging" onPress={() =>navigation.navigate(routes.LOGIN)}/>
+      <AppButton title='create new accuont' color="button" onPress={()=> navigation.navigate(routes.REGISTER)}/>
       </View> 
       <View style={styles.text} >
         <AppText onPress={()=>navigation.navigate('Feed')} style={{color:colors.litegray}} >Login without a user</AppText>

@@ -5,6 +5,7 @@ import Crad from '../component/ Crad';
 import { FlatList,StyleSheet } from 'react-native';
 import MyfavoritesButton from '../component/Button/MyfavoritesButton';
 import routes from '../navigation/routes';
+import details from '../api/details';
 
 const listhotels=[
     {

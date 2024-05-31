@@ -75,15 +75,19 @@ const UpdateProfileScreen = ({ navigation }) => {
 
   return (
     <ImageBackground 
-     style={styles.container}
+     style={styles.imageBackground}
      source={require('../assets/edit-profile.png')}>
-      <AppText  editable={false} >your email is:{email}</AppText>
+
+    
+      <View style={styles.apptext} > 
+
+      <AppText style={styles.text} editable={false} >Your Email  : {email}</AppText> 
       {/* תיבת טקסט לשם משתמש */}
-      <Text style={styles.label}>Name</Text>
-      <AppTextInput
-        value={name}
-        onChangeText={text => setName(text)}
-      />
+
+      <Text style={styles.text} >Name</Text>
+
+       <AppTextInput style={styles.textInput} value={name} onChangeText={text => setName(text)} />
+    
 
       {/* רכיב להעלאת תמונות */}
       <ImageInputList 
@@ -91,26 +95,48 @@ const UpdateProfileScreen = ({ navigation }) => {
         /> 
 
       {/* כפתור לעדכון הפרופיל */}
-      <AppButton title="Update Profile" onPress={updateUserProfile } />
+      <AppButton style={styles.appbutton} title="Update Profile" onPress={updateUserProfile } />
+      </View>
 
     </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  text: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 40,
+    paddingBottom: 10,
+    
+    
+  },
+  app: {
+    width: '70%',
+    marginLeft: 75,
+
+  },
+  appbutton: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  apptext: {
+    marginLeft: 90,
+    width: '65%',
+
+  },
+  imageBackground: {
     flex: 1,
     alignContent: 'center',
     justifyContent: 'center',
   },
-  label: {
-    fontSize: 18,
-    marginBottom: 10,
-  },
-  image: {
-    width: '100%',
-    height: 200,
-    borderRadius: 100,
+
+  textInput: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    width: '70%',
+    
   },
 });
 

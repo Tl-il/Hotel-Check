@@ -67,7 +67,7 @@ function MyPost({ navigation }) {
             style={styles.postContainer}
             title={item.postRating}
             subTitle={item.postContent}
-            imageuri={item.postImage}
+            uri={item.postImage}
             IconComponent={
               <View style={styles.iconContainer}>
                 <Entypo

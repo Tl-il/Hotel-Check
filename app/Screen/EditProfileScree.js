@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
+import { ImageBackground,View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
 import { getAuth, updateProfile,signOut } from 'firebase/auth';
 import ImageInputList from '../component/Imagecompnent/ImageInputList'; // או כל רכיב אחר להעלאת תמונות
 import AppButton from '../component/Button/AppButton'; // רכיב כפתור
 import AppTextInput from '../component/AppTextInput'; // רכיב קלט טקסט
 import { getFirestore, doc, getDoc ,getStorage,update,updateDoc} from 'firebase/firestore';
 import AppText from '../component/AppText';
+
 
 const UpdateProfileScreen = ({ navigation }) => {
   const [name, setName] = useState('');
@@ -73,7 +74,9 @@ const UpdateProfileScreen = ({ navigation }) => {
 
 
   return (
-    <View style={styles.container}>
+    <ImageBackground 
+     style={styles.container}
+     source={require('../assets/edit-profile.png')}>
       <AppText  editable={false} >your email is:{email}</AppText>
       {/* תיבת טקסט לשם משתמש */}
       <Text style={styles.label}>Name</Text>
@@ -90,14 +93,15 @@ const UpdateProfileScreen = ({ navigation }) => {
       {/* כפתור לעדכון הפרופיל */}
       <AppButton title="Update Profile" onPress={updateUserProfile } />
 
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    alignContent: 'center',
+    justifyContent: 'center',
   },
   label: {
     fontSize: 18,

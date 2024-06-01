@@ -12,12 +12,12 @@ function ListingDetiailsScreen({route}) {
     const listing = route.params;
     return (
         <View>
-            <Image style={styles.image} source={listing.image}/>
+            <Image style={styles.image} source={{uri:listing.image}}/>
             <View style={styles.detailsContainer}>
-            <AppText style={styles.title}>{listing.title}</AppText> 
+            <AppText style={styles.title}>{listing.name}</AppText> 
             <AppText style={styles.price}>${listing.price}</AppText>
-            <AppText style={styles.stars}>⭐{listing.stars}</AppText>
-            <MyfavoritesButton style={styles.myfavoritesbutton}/>
+            <AppText style={styles.stars}>⭐{listing.rating}</AppText>
+            
             
            
             <View style={styles.userContainer}></View>
@@ -25,7 +25,6 @@ function ListingDetiailsScreen({route}) {
             image={require('../assets/profile.jpeg')}
             title="youda levi"
             subTitle="4.3 stars"/>
-            <LikeIcon/>
             </View>
         
         </View>

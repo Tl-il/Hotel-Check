@@ -7,6 +7,7 @@ import AccuontNavigator from './AccuontNavigator';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import MyPost from '../Screen/MyPost';
 import WelcomeNavigator from './WelcomeNavigator';
+import CrateHotels from '../Screen/CrateHotels';
 
 const Tab = createBottomTabNavigator();
 
@@ -43,6 +44,8 @@ function BarBottom (){
               <MaterialCommunityIcons name="account" size={size} color={color} />
             ),
           }} />
+
+        <Tab.Screen name="cery" component={CrateHotels}/>
 
     </Tab.Navigator>
     

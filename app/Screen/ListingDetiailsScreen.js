@@ -15,8 +15,11 @@ function ListingDetiailsScreen({route}) {
             <Image style={styles.image} source={{uri:listing.image}}/>
             <View style={styles.detailsContainer}>
             <AppText style={styles.title}>{listing.name}</AppText> 
-            <AppText style={styles.price}>${listing.price}</AppText>
-            <AppText style={styles.stars}>⭐{listing.rating}</AppText>
+            <AppText style={styles.country}>country: {listing.country}</AppText>
+            <AppText style={styles.city}>city: {listing.city}</AppText>
+            <AppText style={styles.price}>$ {listing.price}</AppText>
+            <AppText style={styles.stars}>⭐ {listing.rating}</AppText>
+           
             
             
            
@@ -54,7 +57,11 @@ const styles = StyleSheet.create({
     },
     myfavoritesbutton:{
         marginLeft:"90%",
-    }
+    },
+    city:{
+        marginBottom:10,
+
+    },
 
 
 })

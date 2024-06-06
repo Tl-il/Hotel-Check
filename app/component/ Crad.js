@@ -6,7 +6,7 @@ import MyfavoritesButton from './Button/MyfavoritesButton';
 
 
 
-function  Crad({title,subTitle,image,style,onPress,uri,IconComponent}) {
+function  Crad({title,subTitle,image,style,onPress,uri,IconComponent,country,city}) {
     return (
         <TouchableOpacity onPress={onPress}> 
       <View style={styles.card}>
@@ -15,6 +15,8 @@ function  Crad({title,subTitle,image,style,onPress,uri,IconComponent}) {
         <View style={styles.detailsContanier}>
        <AppText style={styles.title}>{title}</AppText>
         <AppText style={styles.subTitle} >{subTitle}</AppText>
+        <AppText style={styles.subTitle} >{country}</AppText>
+        <AppText style={styles.subTitle} >{city}</AppText>
         </View>
       </View>
       </TouchableOpacity>

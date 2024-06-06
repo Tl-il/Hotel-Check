@@ -80,21 +80,26 @@ const UpdateProfileScreen = ({ navigation }) => {
 
     
       <View style={styles.apptext} > 
+      
 
       <AppText style={styles.text} editable={false} >Your Email  : {email}</AppText> 
       {/* תיבת טקסט לשם משתמש */}
-
-      <Text style={styles.text} >Name</Text>
+      <View style={styles.app} >
+      <Text style={styles.text} > Your Name:</Text>
+      
 
        <AppTextInput style={styles.textInput} value={name} onChangeText={text => setName(text)} />
-    
+       </View>
 
-      {/* רכיב להעלאת תמונות */}
+      {/* רכיב להעלאת תמונות */} 
+      <AppText style={styles.textInput}>Change image:</AppText>
+     
       <ImageInputList 
           onAddImage={uri => setPictureUrl(uri)}
         /> 
 
       {/* כפתור לעדכון הפרופיל */}
+     
       <AppButton style={styles.appbutton} title="Update Profile" onPress={updateUserProfile } />
       </View>
 
@@ -106,15 +111,13 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginBottom: 40,
     paddingBottom: 10,
     
     
   },
   app: {
-    width: '70%',
-    marginLeft: 75,
-
+    marginTop:40,
+    marginBottom: 30,
   },
   appbutton: {
     width: '100%',

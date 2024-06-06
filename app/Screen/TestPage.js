@@ -20,3 +20,8 @@ const styles = StyleSheet.create({
 });
 
 export default TestPage;
+
+
+// for (let i = hotel_id; i < 10; i++) {
+//   return hotel_id= i;
+// }

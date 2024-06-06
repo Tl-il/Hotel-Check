@@ -10,6 +10,7 @@ import PickerItem from './PickerItem';
 
 function AppPicker({style,items,icon,placeholder,onSelectItem,selectedItem,PickerItemComponent=PickerItem,}) {
     [modalVisible,setModalVisible]=useState(false);
+    console.log("App picker:", items);
 
     return (
         <>

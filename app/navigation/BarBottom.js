@@ -45,7 +45,7 @@ function BarBottom (){
             ),
           }} />
 
-        <Tab.Screen name="cery" component={CrateHotels}/>
+        {/* <Tab.Screen name="cery" component={CrateHotels}/> */}
 
     </Tab.Navigator>
     

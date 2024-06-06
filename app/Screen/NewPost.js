@@ -16,93 +16,97 @@ import ListingDetiailsScreen from "./ListingDetiailsScreen";
 
 
 
+const hotels = [
+  { label: 'Hotel A', value: 1 },
+  { label: 'Hotel B', value: 2 },
+  { label: 'Hotel C', value: 3 },]
 
 const NewPost = ({ navigation,route }) => {
-    const [postRating, setPostRating] = useState('');
-    const [postLocation, setPostLocation] = useState('');
-    const [postContent, setPostContent] = useState('');
-    const [postImage, setPostImage] = useState('');
+  // const { hotels } = route.params || []; // קבלת הנתונים מהניווט
+  const [postRating, setPostRating] = useState('');
+  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [postLocation, setPostLocation] = useState('');
+  const [postContent, setPostContent] = useState('');
+  const [postImage, setPostImage] = useState('');
 
-    const auth = getAuth();
-    const db = getFirestore();
-    const user = auth.currentUser;
-  
-    const createPost = async () => {
-      if (!postRating || !postLocation || !postContent) {
-        alert("All fields are required.");
-        return;
+  const auth = getAuth();
+  const db = getFirestore();
+  const user = auth.currentUser;
+
+  const createPost = async () => {
+      if (!postRating || !selectedHotel || !postContent) {
+          alert("All fields are required.");
+          return;
       }
-  
+
       try {
-        await addDoc(collection(db, "posts"), {
-          userId: user.uid,
-          postRating: postRating,
-          postContent: postContent,
-          postLocation: postLocation,
-          postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg?alt=media&token=de546de9-293c-41bd-b63b-9e4d9d062220',
-        });
-        
-        console.log("Post created!");
-        navigation.navigate('MyPost');
-        alert("Post created!");
-      } catch (error) {
-        console.error("Error creating post: ", error);
-      }
-    };
+          await addDoc(collection(db, "posts"), {
+              userId: user.uid,
+              hotelName: selectedHotel,
+              postRating: postRating,
+              postContent: postContent,
+              postLocation: postLocation,
+              postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg?alt=media&token=de546de9-293c-41bd-b63b-9e4d9d062220',
+          });
     
-  
-    useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(user => {
-        if (!user) {
-          alert("No user is logged in, please log in to create a post.");
-          navigation.navigate('Welcome');
-        }
 
-
-        
-      });
-  
-      return () => unsubscribe();
-    }, []);
-    const listing = route.params;
-    return (
-      <ImageBackground
-        style={styles.background}
-        source={require('../assets/newpost.png')}>
-        <View style={styles.textInput}>
-          <AppPicker placeholder="The name of the hotel"  style={styles.pickr} />
-          <StarRating disabled={false} maxStars={5} rating={postRating} selectedStar={(rating) => setPostRating(rating)} fullStarColor={'gold'}/>
-          <AppTextInput placeholder="location" onChangeText={text => setPostLocation(text)}/>
-          <AppTextInput placeholder="Tell about your experience.." onChangeText={text => setPostContent(text)}/>
-          <ImageInputList  onAddImage={uri => setPostImage(uri)} />
-        </View>
-        <View style={styles.buttonContainer}>
-          <AppButton title="share" onPress={() => {
-          if (auth.currentUser) {
-            createPost(auth.currentUser.uid, postRating , postContent, postLocation, postImage);
-          } else {
-            console.error("No user is logged in");
-          }
-        }}/>
-        </View>
-      </ImageBackground>
-    );
+          console.log("Post created!");
+          navigation.navigate('MyPost');
+          alert("Post created!");
+      } catch (error) {
+          console.error("Error creating post: ", error);
+      }
   };
 
+  useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged(user => {
+          if (!user) {
+              alert("No user is logged in, please log in to create a post.");
+              navigation.navigate('Welcome');
+          }
+      });
+
+      return () => unsubscribe();
+  }, []);
+
+
+  return (
+      <ImageBackground
+          style={styles.background}
+          source={require('../assets/newpost.png')}>
+          <View style={styles.textInput}>
+          <AppPicker
+                    items={hotels}
+                    placeholder="Select Hotel"
+                    selectedItem={selectedHotel}
+                    onSelectItem={(item) => setSelectedHotel(item)}
+                />
+              <StarRating disabled={false} maxStars={5} rating={postRating} selectedStar={(rating) => setPostRating(rating)} fullStarColor={'gold'} />
+              <AppTextInput placeholder="Location" value={postLocation} onChangeText={text => setPostLocation(text)} />
+              <AppTextInput placeholder="Tell about your experience..." onChangeText={text => setPostContent(text)} />
+              <ImageInputList onAddImage={uri => setPostImage(uri)} />
+          </View>
+          <View style={styles.buttonContainer}>
+              <AppButton title="Share" onPress={createPost} />
+          </View>
+      </ImageBackground>
+  );
+};
+
 const styles = StyleSheet.create({
-  background:{
-    flex:1
+  background: {
+      flex: 1
   },
-  buttonContainer:{
-    padding:20,
-    width:'130%',
-    marginTop:15,
-    marginLeft:'15%',
+  buttonContainer: {
+      padding: 20,
+      width: '130%',
+      marginTop: 15,
+      marginLeft: '15%',
   },
-  textInput:{
-    paddingTop:'45%',
-    width:'90%',
-    paddingLeft:55,
+  textInput: {
+      paddingTop: '45%',
+      width: '90%',
+      paddingLeft: 55,
   },
   text:{
     color:colors.litegray,

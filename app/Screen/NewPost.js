@@ -13,13 +13,14 @@ import { getAuth } from "firebase/auth";
 import PickerItem from "../component/PickerItem";
 import StarRating from "react-native-star-rating";
 import ListingDetiailsScreen from "./ListingDetiailsScreen";
+import {loadSavedHotels} from '../utility/apiStronge';
 
 
 
-const hotels = [
-  { label: 'Hotel A', value: 1 },
-  { label: 'Hotel B', value: 2 },
-  { label: 'Hotel C', value: 3 },]
+// const hotels = [
+//   { label: 'Hotel A', value: 1 },
+//   { label: 'Hotel B', value: 2 },
+//   { label: 'Hotel C', value: 3 },]
 
 const NewPost = ({ navigation,route }) => {
   // const { hotels } = route.params || []; // קבלת הנתונים מהניווט
@@ -28,6 +29,7 @@ const NewPost = ({ navigation,route }) => {
   const [postLocation, setPostLocation] = useState('');
   const [postContent, setPostContent] = useState('');
   const [postImage, setPostImage] = useState('');
+  const [hotels, setHotels] = useState([]);
 
   const auth = getAuth();
   const db = getFirestore();
@@ -58,6 +60,7 @@ const NewPost = ({ navigation,route }) => {
       }
   };
 
+
   useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
           if (!user) {
@@ -68,6 +71,19 @@ const NewPost = ({ navigation,route }) => {
 
       return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const fetchHotels = async () => {
+        const savedHotels = await loadSavedHotels();
+        const hotelItems = savedHotels.map(hotel => ({
+            label: hotel.name,
+            value: hotel.id
+        }));
+        setHotels(hotelItems);
+    };
+
+    fetchHotels();
+}, []);
 
 
   return (

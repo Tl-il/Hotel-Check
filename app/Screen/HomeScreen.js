@@ -12,7 +12,10 @@ import { getAuth } from "firebase/auth";
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NewPost from './NewPost';
-import { value } from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
+import fetchHotelData from '../api/details';
+import { saveHotelsToStorage, loadSavedHotels, clearHotelsFromStorage } from '../utility/apiStronge';
+
+
 
 function HomeScreen({navigation}) { 
 
@@ -20,30 +23,6 @@ function HomeScreen({navigation}) {
   const [isFetching, setIsFetching] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const intervalRef = useRef(null);
-
-  const fetchHotelData = async (id) => {
-    const options = {
-      method: 'GET',
-      url: 'https://booking-com.p.rapidapi.com/v1/hotels/data',
-      params: {
-        hotel_id: id,
-        locale: 'en-gb',
-        image_quality: 'high',
-      },
-      headers: {
-        'x-rapidapi-key': '8878e7dac2msh8f76c860996aad3p136acdjsn304ba7bdee12',
-        'x-rapidapi-host': 'booking-com.p.rapidapi.com'
-      }
-    };
-
-    try {
-      const response = await axios.request(options);
-      const hotelData = response.data;
-      saveHotelData(hotelData);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const saveHotelData = async (hotelData) => {
     const hotel = {
@@ -68,56 +47,34 @@ function HomeScreen({navigation}) {
     });
   };
 
-  const saveHotelsToStorage = async (hotels) => {
-    try {
-      await AsyncStorage.setItem('hotels', JSON.stringify(hotels));
-    } catch (error) {
-      console.error('Failed to save hotels to storage', error);
-    }
-  };
-
-  const clearHotelsFromStorage = async () => {
-    try {
-      await AsyncStorage.removeItem('hotels');
-      setHotels([]);
-    } catch (error) {
-      console.error('Failed to clear hotels from storage', error);
-    }
-  };
-
   const onRefresh = async () => {
     setRefreshing(true);
     await clearHotelsFromStorage();
+    setHotels([]);
     setRefreshing(false);
     setIsFetching(true);
   };
 
   useEffect(() => {
-    const loadSavedHotels = async () => {
-      try {
-        const savedHotels = await AsyncStorage.getItem('hotels');
-        if (savedHotels !== null) {
-          const parsedHotels = JSON.parse(savedHotels);
-          // Ensure all hotels have an id and value field
-          const validHotels = parsedHotels.filter(hotel => hotel.id && hotel.value);
-          setHotels(validHotels);
-        }
-      } catch (error) {
-        console.error('Failed to load hotels from storage', error);
-      }
+    const loadSavedHotelsFromStorage = async () => {
+      const savedHotels = await loadSavedHotels();
+      const validHotels = savedHotels.filter(hotel => hotel.id && hotel.value);
+      setHotels(validHotels);
     };
 
-    loadSavedHotels();
+    loadSavedHotelsFromStorage();
   }, []);
-
 
   useEffect(() => {
     if (isFetching) {
       let currentHotelId = 1377074;
       let count = 0;
-      intervalRef.current = setInterval(() => {
+      intervalRef.current = setInterval(async () => {
         if (count < 5) {
-          fetchHotelData(currentHotelId);
+          const hotelData = await fetchHotelData(currentHotelId);
+          if (hotelData) {
+            await saveHotelData(hotelData);
+          }
           currentHotelId += 1;
           count += 1;
         } else {
@@ -129,6 +86,7 @@ function HomeScreen({navigation}) {
       return () => clearInterval(intervalRef.current);
     }
   }, [isFetching]);
+
 
   const handleNewPost = (hotel) => {
     navigation.navigate('new Post', {

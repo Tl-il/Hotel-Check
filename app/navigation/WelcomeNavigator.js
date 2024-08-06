@@ -9,6 +9,8 @@ import BarBottom from './BarBottom';
 import MyPost from '../Screen/MyPost';
 import EditPost from '../Screen/EditPost';
 import TestPage from '../Screen/TestPage';
+import ListingDetiailsScreen from '../Screen/ListingDetiailsScreen';
+import NewPost from '../Screen/NewPost';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 
@@ -44,6 +46,8 @@ const WelcomeNavigator =()=> {
             <Stack.Screen name="MyPost" component={MyPost}options={{headerShown:true}}/>
             <Stack.Screen name="EditPost" component={EditPost} options={{headerShown:true}}/>
             <Stack.Screen name="Edit Account" component={EditProfileScreen} options={{headerShown:true}}/>
+            <Stack.Screen name="ListingDetiails" component={ListingDetiailsScreen} options={{headerShown:true}}/>
+            <Stack.Screen name="NewPost" component={NewPost} options={{headerShown:true}}/>
         </Stack.Navigator>
 )
 };

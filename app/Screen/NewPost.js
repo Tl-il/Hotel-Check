@@ -14,6 +14,7 @@ import PickerItem from "../component/PickerItem";
 import StarRating from "react-native-star-rating";
 import ListingDetiailsScreen from "./ListingDetiailsScreen";
 import {loadSavedHotels} from '../utility/apiStronge';
+import { useFocusEffect } from '@react-navigation/native';
 
 
 
@@ -23,114 +24,143 @@ import {loadSavedHotels} from '../utility/apiStronge';
 //   { label: 'Hotel C', value: 3 },]
 
 const NewPost = ({ navigation,route }) => {
-  // const { hotels } = route.params || []; // קבלת הנתונים מהניווט
-  const [postRating, setPostRating] = useState('');
-  const [selectedHotel, setSelectedHotel] = useState(null);
-  const [postLocation, setPostLocation] = useState('');
-  const [postContent, setPostContent] = useState('');
-  const [postImage, setPostImage] = useState('');
-  const [hotels, setHotels] = useState([]);
+    const [postRating, setPostRating] = useState('');
+    const [selectedHotel, setSelectedHotel] = useState(null);
+    const [postLocation, setPostLocation] = useState('');
+    const [postContent, setPostContent] = useState('');
+    const [postImage, setPostImage] = useState('');
+    const [hotels, setHotels] = useState([]);
+    const [userName, setUserName] = useState('');
+    const [userImage, setUserImage] = useState('');
 
-  const auth = getAuth();
-  const db = getFirestore();
-  const user = auth.currentUser;
+    const auth = getAuth();
+    const db = getFirestore();
+    const user = auth.currentUser;
 
-  const createPost = async () => {
-      if (!postRating || !selectedHotel || !postContent) {
-          alert("All fields are required.");
-          return;
-      }
+    useEffect(() => {
+        if (user) {
+            setUserName(user.displayName); // Assumes the displayName is set for the user
+            if (user.photoURL) {
+                setUserImage(user.photoURL); // Assumes the photoURL is set for the user
+            }
+        }
+    }, [user]);
 
-      try {
-          await addDoc(collection(db, "posts"), {
-              userId: user.uid,
-              hotelName: selectedHotel,
-              postRating: postRating,
-              postContent: postContent,
-              postLocation: postLocation,
-              postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg?alt=media&token=de546de9-293c-41bd-b63b-9e4d9d062220',
-          });
+    const createPost = async () => {
+        if (!postRating || !selectedHotel || !postContent) {
+            alert("All fields are required.");
+            return;
+        }
+
+        try {
+            await addDoc(collection(db, "posts"), {
+                userName: userName,
+                userId: user.uid,
+                userImage: userImage,
+                hotelName: selectedHotel.label,
+                hotelId: selectedHotel.value,
+                postRating: postRating,
+                postContent: postContent,
+                postLocation: postLocation,
+                postImage: postImage || 'https://firebasestorage.googleapis.com/v0/b/hotel-check.appspot.com/o/pngtree-no-image-available-icon-flatvector-illustration-pic-design-profile-vector-png-image_40966566.jpg?alt=media&token=de546de9-293c-41bd-b63b-9e4d9d062220',
+            });
+
+            console.log("Post created!");
+            navigation.navigate('MyPost');
+            alert("Post created!");
+        } catch (error) {
+            console.error("Error creating post: ", error);
+        }
+    };
     
 
-          console.log("Post created!");
-          navigation.navigate('MyPost');
-          alert("Post created!");
-      } catch (error) {
-          console.error("Error creating post: ", error);
-      }
-  };
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (!user) {
+                alert("No user is logged in, please log in to create a post.");
+                navigation.navigate('Welcome');
+            }
+        });
 
+        return () => unsubscribe();
+    }, []);
 
-  useEffect(() => {
-      const unsubscribe = auth.onAuthStateChanged(user => {
-          if (!user) {
-              alert("No user is logged in, please log in to create a post.");
-              navigation.navigate('Welcome');
-          }
-      });
+    useEffect(() => {
+        const fetchHotels = async () => {
+            const savedHotels = await loadSavedHotels();
+            const hotelItems = savedHotels.map(hotel => ({
+                label: hotel.name,
+                value: hotel.id
+            }));
+            setHotels(hotelItems);
+        };
 
-      return () => unsubscribe();
-  }, []);
+        fetchHotels();
+    }, []);
 
-  useEffect(() => {
-    const fetchHotels = async () => {
-        const savedHotels = await loadSavedHotels();
-        const hotelItems = savedHotels.map(hotel => ({
-            label: hotel.name,
-            value: hotel.id
-        }));
-        setHotels(hotelItems);
-    };
-
-    fetchHotels();
-}, []);
-
-
-  return (
-      <ImageBackground
-          style={styles.background}
-          source={require('../assets/newpost.png')}>
-          <View style={styles.textInput}>
-          <AppPicker
+    return (
+        <ImageBackground
+            style={styles.background}
+            source={require('../assets/newpost.png')}>
+            <View style={styles.textInput}>
+                <AppPicker
                     items={hotels}
                     placeholder="Select Hotel"
                     selectedItem={selectedHotel}
                     onSelectItem={(item) => setSelectedHotel(item)}
                 />
-              <StarRating disabled={false} maxStars={5} rating={postRating} selectedStar={(rating) => setPostRating(rating)} fullStarColor={'gold'} />
-              <AppTextInput placeholder="Location" value={postLocation} onChangeText={text => setPostLocation(text)} />
-              <AppTextInput placeholder="Tell about your experience..." onChangeText={text => setPostContent(text)} />
-              <ImageInputList onAddImage={uri => setPostImage(uri)} />
-          </View>
-          <View style={styles.buttonContainer}>
-              <AppButton title="Share" onPress={createPost} />
-          </View>
-      </ImageBackground>
-  );
+                <StarRating
+                    disabled={false}
+                    maxStars={5}
+                    rating={postRating}
+                    selectedStar={(rating) => setPostRating(rating)}
+                    fullStarColor={'gold'}
+                />
+                <AppTextInput
+                    placeholder="Location"
+                    value={postLocation}
+                    onChangeText={text => setPostLocation(text)}
+                />
+                <AppTextInput
+                    placeholder="Tell about your experience..."
+                    onChangeText={text => setPostContent(text)}
+                />
+                <ImageInputList
+                    onAddImage={uri => setPostImage(uri)}
+                />
+            </View>
+            <View style={styles.buttonContainer}>
+                <AppButton
+                    title="Share"
+                    onPress={createPost}
+                />
+            </View>
+        </ImageBackground>
+    );
 };
 
 const styles = StyleSheet.create({
-  background: {
-      flex: 1
-  },
-  buttonContainer: {
-      padding: 20,
-      width: '130%',
-      marginTop: 15,
-      marginLeft: '15%',
-  },
-  textInput: {
-      paddingTop: '45%',
-      width: '90%',
-      paddingLeft: 55,
-  },
-  text:{
-    color:colors.litegray,
-  },
-  pickr:{
-    color:colors.litegray,
-    size:20,
-  },
-})
+    background: {
+        flex: 1
+    },
+    buttonContainer: {
+        padding: 20,
+        width: '130%',
+        marginTop: 15,
+        marginLeft: '15%',
+    },
+    textInput: {
+        paddingTop: '45%',
+        width: '90%',
+        paddingLeft: 55,
+    },
+    text: {
+        color: colors.litegray,
+    },
+    pickr: {
+        color: colors.litegray,
+        size: 20,
+    },
+});
 
 export default NewPost;

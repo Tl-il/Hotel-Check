@@ -1,8 +1,8 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Screen from '../component/Screen';
 import ListItem from '../component/ListItem';
 import Crad from '../component/ Crad';
-import { FlatList,StyleSheet,RefreshControl } from 'react-native';
+import { FlatList, StyleSheet, RefreshControl } from 'react-native';
 import MyfavoritesButton from '../component/Button/MyfavoritesButton';
 import routes from '../navigation/routes';
 import details from '../api/details';
@@ -15,10 +15,7 @@ import NewPost from './NewPost';
 import fetchHotelData from '../api/details';
 import { saveHotelsToStorage, loadSavedHotels, clearHotelsFromStorage } from '../utility/apiStronge';
 
-
-
-function HomeScreen({navigation}) { 
-
+function HomeScreen({ navigation }) { 
   const [hotels, setHotels] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
@@ -87,15 +84,13 @@ function HomeScreen({navigation}) {
     }
   }, [isFetching]);
 
-
   const handleNewPost = (hotel) => {
-    navigation.navigate('new Post', {
+    navigation.navigate('NewPost', { // עדכון שם המסך לניווט נכון
       name: hotel.name,
       city: hotel.city,
       country: hotel.country
     });
   };
-
 
   return (
     <Screen style={styles.screen}>
@@ -107,8 +102,7 @@ function HomeScreen({navigation}) {
             uri={item.image}
             title={item.name + " - " + item.city + ", " + item.country}
             subTitle={"⭐" + item.rating}
-            onPress={() => navigation.navigate(routes.LISTING_DETAILS,item)}
-            
+            onPress={() => navigation.navigate('ListingDetails', item)} // ניווט למסך פרטי המלון
           />
         )}
         refreshControl={

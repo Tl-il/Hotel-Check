@@ -37,12 +37,6 @@ const createUser = async ()=>{
         password: password,
         pictureUrl: pictureUrl!== undefined ? pictureUrl : null,
       });
-      // await StoreUserData({
-      //   uid: user.uid,
-      //   email: user.email,
-      //   displayName: user.displayName,
-      //   photoURL: user.photoURL,
-      // });
 
       alert('User created');
       navigation.navigate('Feed');
@@ -58,18 +52,6 @@ const createUser = async ()=>{
 };
 
   
-
-  // .then((userCredential) => {
-  //   const user = userCredential.user;
-  //   alert('user created')
-  //   user ? navigation.navigate('AccountScreen') : console.log('user created');
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // ..
-  // });
-
   return (
     <ImageBackground
     style={styles.background}

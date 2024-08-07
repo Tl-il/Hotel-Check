@@ -6,6 +6,6 @@ export default{
     text:{
         color:colors.black,
         fontSize:20, 
-        fontFamily: Platform.OS === "android" ? 'Roboto' : 'Avneir',
+        //fontFamily: Platform.OS === "android" ? 'Roboto' : 'Avneir',
     },
 }

@@ -10,6 +10,7 @@ function ListingDetailsScreen({ route }) {
     const listing = route.params;
     const [hotelDetails, setHotelDetails] = useState(null);
     const [posts, setPosts] = useState([]);
+    const [averageRating, setAverageRating] = useState(0);
 
     const fetchPosts = async (hotelName) => {
         const db = getFirestore();
@@ -17,6 +18,13 @@ function ListingDetailsScreen({ route }) {
         const querySnapshot = await getDocs(q);
         const postsList = querySnapshot.docs.map(doc => doc.data());
         setPosts(postsList);
+        calculateAverageRating(postsList);
+    };
+
+    const calculateAverageRating = (postsList) => {
+        const totalRating = postsList.reduce((sum, post) => sum + (post.postRating || 0), 0);
+        const average = postsList.length ? totalRating / postsList.length : 0;
+        setAverageRating(average);
     };
 
     useEffect(() => {
@@ -48,7 +56,7 @@ function ListingDetailsScreen({ route }) {
                 <AppText style={styles.title}>{listing.name}</AppText>
                 <AppText style={styles.country}>Country: {listing.country}</AppText>
                 <AppText style={styles.city}>City: {listing.city}</AppText>
-                <AppText style={styles.stars}>⭐ {listing.rating}</AppText>
+                <AppText style={styles.stars}>Average User Rating: ⭐ {averageRating.toFixed(2)}</AppText>
                 <View style={styles.userContainer}>
                     <FlatList
                         data={posts}
@@ -60,13 +68,12 @@ function ListingDetailsScreen({ route }) {
                                     title={item.userName || 'Unknown User'}
                                     subTitle={item.postRating ? `⭐ ${item.postRating}` : ''}
                                 />
-                                <View style={styles.postComent}>
-
-                                <AppText style={styles.postContent}> What was the user experience: "{item.postContent}" </AppText>
-                                <AppText style={styles.postContent}> Location: "{item.postLocation}"</AppText>
-                                {item.postImage && <Image style={styles.postImage} source={{ uri: item.postImage }} />}
+                                <View style={styles.postComment}>
+                                    <AppText style={styles.postContent}>What was the user experience: "{item.postContent}"</AppText>
+                                    <AppText style={styles.postContent}>Location: "{item.postLocation}"</AppText>
+                                    {item.postImage && <Image style={styles.postImage} source={{ uri: item.postImage }} />}
+                                </View>
                             </View>
-                        </View>
                         )}
                     />
                 </View>
@@ -101,14 +108,12 @@ const styles = StyleSheet.create({
     },
     postContainer: {
         marginBottom: 20,
-
     },
     postContent: {
         marginTop: 10,
-        
     },
     postImage: {
-        width: '20%',
+        width: '100%',
         height: 100,
         marginTop: 10,
     },
@@ -117,7 +122,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    
 });
 
 export default ListingDetailsScreen;

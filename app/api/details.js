@@ -10,7 +10,7 @@ const fetchHotelData = async (id) => {
         image_quality: 'high',
       },
       headers: {
-        'x-rapidapi-key': '8878e7dac2msh8f76c860996aad3p136acdjsn304ba7bdee12',
+        'x-rapidapi-key': '26a3926c6emsh3fac17e666bc2e6p138527jsnc80012db20da',
         'x-rapidapi-host': 'booking-com.p.rapidapi.com'
       }
     };

@@ -26,7 +26,7 @@ function HomeScreen({ navigation }) {
       id: hotelData.hotel_id,
       name: hotelData.name,
       image: hotelData.main_photo_url,
-      rating: hotelData.review_score,
+      //rating: hotelData.review_score,
       country: hotelData.country,
       city: hotelData.city,
       label: hotelData.name,
@@ -101,7 +101,7 @@ function HomeScreen({ navigation }) {
           <Crad 
             uri={item.image}
             title={item.name + " - " + item.city + ", " + item.country}
-            subTitle={"⭐" + item.rating}
+            subTitle={"⭐" + '5.0'}
             onPress={() => navigation.navigate('ListingDetails', item)} // ניווט למסך פרטי המלון
           />
         )}

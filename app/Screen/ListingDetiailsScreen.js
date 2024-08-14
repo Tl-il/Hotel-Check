@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Image, View, StyleSheet, FlatList } from 'react-native';
+import { Image, View, StyleSheet, FlatList,ScrollView } from 'react-native';
 import AppText from '../component/AppText';
 import ListItem from '../component/ListItem';
 import { getFirestore, collection, query, where, getDocs } from 'firebase/firestore';
@@ -50,35 +50,35 @@ function ListingDetailsScreen({ route }) {
     }
 
     return (
-        <View>
-            <Image style={styles.image} source={{ uri: listing.image }} />
-            <View style={styles.detailsContainer}>
-                <AppText style={styles.title}>{listing.name}</AppText>
-                <AppText style={styles.country}>Country: {listing.country}</AppText>
-                <AppText style={styles.city}>City: {listing.city}</AppText>
-                <AppText style={styles.stars}>Average User Rating: ⭐ {averageRating.toFixed(2)}</AppText>
-                <View style={styles.userContainer}>
-                    <FlatList
-                        data={posts}
-                        keyExtractor={(item, index) => index.toString()}
-                        renderItem={({ item }) => (
-                            <View style={styles.postContainer}>
-                                <ListItem
-                                    image={{ uri: item.userImage }}
-                                    title={item.userName || 'Unknown User'}
-                                    subTitle={item.postRating ? `⭐ ${item.postRating}` : ''}
-                                />
-                                <View style={styles.postComment}>
-                                    <AppText style={styles.postContent}>What was the user experience: "{item.postContent}"</AppText>
-                                    <AppText style={styles.postContent}>Location: "{item.postLocation}"</AppText>
-                                    {item.postImage && <Image style={styles.postImage} source={{ uri: item.postImage }} />}
-                                </View>
-                            </View>
-                        )}
-                    />
+        <FlatList
+            ListHeaderComponent={
+                <View>
+                    <Image style={styles.image} source={{ uri: listing.image }} />
+                    <View style={styles.detailsContainer}>
+                        <AppText style={styles.title}>{listing.name}</AppText>
+                        <AppText style={styles.country}>Country: {listing.country}</AppText>
+                        <AppText style={styles.city}>City: {listing.city}</AppText>
+                        <AppText style={styles.stars}>Average User Rating: ⭐ {averageRating.toFixed(2)}</AppText>
+                    </View>
                 </View>
-            </View>
-        </View>
+            }
+            data={posts}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => (
+                <View style={styles.postContainer}>
+                    <ListItem
+                        image={{ uri: item.userImage }}
+                        title={item.userName || 'Unknown User'}
+                        subTitle={item.postRating ? `⭐ ${item.postRating}` : ''}
+                    />
+                    <View style={styles.postComment}>
+                        <AppText style={styles.postContent}>What was the user experience: "{item.postContent}"</AppText>
+                        <AppText style={styles.postContent}>Location: "{item.postLocation}"</AppText>
+                        {item.postImage && <Image style={styles.postImage} source={{ uri: item.postImage }} />}
+                    </View>
+                </View>
+            )}
+        />
     );
 }
 
@@ -103,14 +103,12 @@ const styles = StyleSheet.create({
     stars: {
         fontSize: 24,
     },
-    userContainer: {
-        marginVertical: 10,
-    },
     postContainer: {
         marginBottom: 20,
     },
     postContent: {
-        marginTop: 10,
+        padding: 10,
+        flex: 1,
     },
     postImage: {
         width: '100%',

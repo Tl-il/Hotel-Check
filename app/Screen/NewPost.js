@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useCallback } from "react";
 import { View,Text, ImageBackground, StyleSheet } from 'react-native'
 import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
@@ -46,6 +46,33 @@ const NewPost = ({ navigation,route }) => {
         }
     }, [user]);
 
+    useEffect(() => {
+        const fetchHotels = async () => {
+            const savedHotels = await loadSavedHotels();
+            const hotelItems = savedHotels.map(hotel => ({
+                label: hotel.name,
+                value: hotel.id
+            }));
+            setHotels(hotelItems);
+        };
+
+        fetchHotels();
+    }, []);
+
+    // שימוש ב- useFocusEffect כדי לנקות נתונים כאשר הדף יוצא מפוקוס
+    useFocusEffect(
+        React.useCallback(() => {
+            // ניקוי כל הנתונים כאשר המסך יוצא מפוקוס
+            return () => {
+                setPostRating('');
+                setSelectedHotel(null);
+                setPostLocation('');
+                setPostContent('');
+                setPostImage('');
+            };
+        }, [])
+    );
+
     const createPost = async () => {
         if (!postRating || !selectedHotel || !postContent) {
             alert("All fields are required.");
@@ -72,31 +99,6 @@ const NewPost = ({ navigation,route }) => {
             console.error("Error creating post: ", error);
         }
     };
-    
-
-    useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if (!user) {
-                alert("No user is logged in, please log in to create a post.");
-                navigation.navigate('Welcome');
-            }
-        });
-
-        return () => unsubscribe();
-    }, []);
-
-    useEffect(() => {
-        const fetchHotels = async () => {
-            const savedHotels = await loadSavedHotels();
-            const hotelItems = savedHotels.map(hotel => ({
-                label: hotel.name,
-                value: hotel.id
-            }));
-            setHotels(hotelItems);
-        };
-
-        fetchHotels();
-    }, []);
 
     return (
         <ImageBackground
@@ -123,6 +125,7 @@ const NewPost = ({ navigation,route }) => {
                 />
                 <AppTextInput
                     placeholder="Tell about your experience..."
+                    value={postContent}
                     onChangeText={text => setPostContent(text)}
                 />
                 <ImageInputList

@@ -14,21 +14,19 @@ function HomeScreen({ navigation }) {
 
   const saveHotelData = async (hotelData) => {
     const hotel = {
-      id: hotelData.hotel_id,
-      name: hotelData.name,
-      image: hotelData.main_photo_url,
-      //rating: hotelData.review_score,
-      country: hotelData.country,
-      city: hotelData.city,
-      label: hotelData.name,
-      value: hotelData.hotel_id,
+      id: hotelData.summary.id,  // מזהה המלון
+      name: hotelData.summary.name,  // שם המלון
+      image: hotelData.propertyGallery?.images?.[0]?.image?.url || '',  // תמונת המלון
+      country: hotelData.summary.location?.address?.countryCode || 'Unknown',  // קוד המדינה
+      city: hotelData.summary.location?.address?.city || 'Unknown',  // עיר
+      rating: hotelData.reviewInfo.summary?.overallScoreWithDescriptionA11y?.value || '4.0',  // דירוג הכוכבים (אם קיים)
     };
 
     setHotels(prevHotels => {
       const isExisting = prevHotels.some(item => item.id === hotel.id);
       if (!isExisting) {
         const updatedHotels = [...prevHotels, hotel];
-        saveHotelsToStorage(updatedHotels);
+        saveHotelsToStorage(updatedHotels); // שמירת נתוני המלונות
         return updatedHotels;
       }
       return prevHotels;
@@ -37,31 +35,35 @@ function HomeScreen({ navigation }) {
 
   const onRefresh = async () => {
     setRefreshing(true);
-    await clearHotelsFromStorage();
+    await clearHotelsFromStorage(); // נקה את הנתונים הקיימים באחסון
     setHotels([]);
     setRefreshing(false);
-    setIsFetching(true);
+    setIsFetching(true); // התחל מחדש את הבאת הנתונים
   };
 
   useEffect(() => {
     const loadSavedHotelsFromStorage = async () => {
       const savedHotels = await loadSavedHotels();
-      const validHotels = savedHotels.filter(hotel => hotel.id && hotel.value);
+      const validHotels = savedHotels.filter(hotel => hotel.id && hotel.name); // וודא שהמלון תקין
       setHotels(validHotels);
     };
 
-    loadSavedHotelsFromStorage();
+    loadSavedHotelsFromStorage(); // טען מלונות שמורים בעת טעינת המסך
   }, []);
 
   useEffect(() => {
-    if (isFetching) { //הגבלת פוסטים בגלל הגבלה של 500 קריאות
-      let currentHotelId = 1377074;
+    if (isFetching) {
+      let currentHotelId = 1105155;
       let count = 0;
       intervalRef.current = setInterval(async () => {
-        if (count < 5) {
-          const hotelData = await fetchHotelData(currentHotelId);
-          if (hotelData) {
-            await saveHotelData(hotelData);
+        if (count < 6) {
+          try {
+            const hotelData = await fetchHotelData(currentHotelId); // הבאת נתוני המלון
+            if (hotelData) {
+              await saveHotelData(hotelData); // שמור את נתוני המלון
+            }
+          } catch (error) {
+            console.error('Error fetching hotel data:', error);
           }
           currentHotelId += 1;
           count += 1;
@@ -69,19 +71,11 @@ function HomeScreen({ navigation }) {
           clearInterval(intervalRef.current);
           setIsFetching(false);
         }
-      }, 300);
+      }, 3500); // מרווח בין קריאות
 
       return () => clearInterval(intervalRef.current);
     }
   }, [isFetching]);
-
-  const handleNewPost = (hotel) => {
-    navigation.navigate('NewPost', { 
-      name: hotel.name,
-      city: hotel.city,
-      country: hotel.country
-    });
-  };
 
   return (
     <Screen style={styles.screen}>
@@ -91,8 +85,8 @@ function HomeScreen({ navigation }) {
         renderItem={({ item }) => (
           <Crad 
             uri={item.image}
-            title={item.name + " - " + item.city + ", " + item.country}
-            subTitle={"⭐" + '5.0'}
+            title={`${item.name} - ${item.city}, ${item.country}`}
+            subTitle={`⭐ ${item.rating}`}
             onPress={() => navigation.navigate('ListingDetails', item)} // ניווט למסך פרטי המלון
           />
         )}

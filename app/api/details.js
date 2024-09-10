@@ -3,24 +3,27 @@ import axios from 'axios';
 const fetchHotelData = async (id) => {
     const options = {
       method: 'GET',
-      url: 'https://booking-com.p.rapidapi.com/v1/hotels/data',
+      url: 'https://hotels-com-provider.p.rapidapi.com/v2/hotels/details',
       params: {
-        hotel_id: id,
-        locale: 'en-gb',
-        image_quality: 'high',
+        domain: 'US',  // ייתכן שתצטרך לעדכן בהתאם לדומיין המתאים
+        hotel_id: id,  // מזהה המלון המתקבל כפרמטר
+        locale: 'en_US'  // ניתן לשנות את השפה בהתאם לצורך
       },
       headers: {
-        'x-rapidapi-key': '26a3926c6emsh3fac17e666bc2e6p138527jsnc80012db20da',
-        'x-rapidapi-host': 'booking-com.p.rapidapi.com'
+        'x-rapidapi-key': 'c54b3e88f4msh7f477ef6ea45dd9p142dbbjsn195bb079a813',  // וודא שהמפתח הזה פעיל
+        'x-rapidapi-host': 'hotels-com-provider.p.rapidapi.com'
       }
     };
 
     try {
       const response = await axios.request(options);
+      console.log('Response from API:', response.data); // הדפס את התשובה ל-API
       return response.data;
-    } catch (error) {
-      console.error(error);
-    }
+  } catch (error) {
+      console.error('Error fetching hotel data:', error);
+      return null;
+  }
 };
+
 
 export default fetchHotelData;

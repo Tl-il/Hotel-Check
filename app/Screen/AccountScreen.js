@@ -5,10 +5,9 @@ import { StyleSheet, View, FlatList,resizeMode } from 'react-native';
 import colors from '../config/colors';
 import Icon from '../component/Icon';
 import Separator from '../component/Separator';
-import Crad from '../component/ Crad';
 import { getAuth, signOut } from "firebase/auth";
 import AccountInfo from '../component/Firebase/AccountInfo';
-import AppButton from '../component/Button/AppButton';
+
 
 
 
@@ -21,16 +20,7 @@ const menuItems = [
         },
         targetScreen: "MyPost"
     },
-    // {
-    //     title: 'My favorite posts',
-    //     icon: {
-    //         name: "heart",
-    //         backgoundcolor: colors.primary,
-    //     },
-
-    //     targetScreen: 'Messages',
-    // },
-
+   
 
 ]
 
@@ -46,12 +36,7 @@ function AccountScreen({ navigation }) {
     return (
         <Screen style={styles.screen}>
             <View style={styles.profile}>
-                {/* <Crad
-            image={require('../assets/profile.jpeg')}
-            style={styles.image}
-            title={'Jiara Martins'}
-            subTitle={'hello@reallygreatsite.com'} 
-            />  */}
+        
                 <AccountInfo/>
 
             </View>

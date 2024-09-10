@@ -1,17 +1,8 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Screen from '../component/Screen';
-import ListItem from '../component/ListItem';
 import Crad from '../component/ Crad';
 import { FlatList, StyleSheet, RefreshControl } from 'react-native';
-import MyfavoritesButton from '../component/Button/MyfavoritesButton';
-import routes from '../navigation/routes';
-import details from '../api/details';
 import 'firebase/storage';
-import { getFirestore, collection, getDocs } from 'firebase/firestore';
-import { getAuth } from "firebase/auth";
-import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import NewPost from './NewPost';
 import fetchHotelData from '../api/details';
 import { saveHotelsToStorage, loadSavedHotels, clearHotelsFromStorage } from '../utility/apiStronge';
 
@@ -63,7 +54,7 @@ function HomeScreen({ navigation }) {
   }, []);
 
   useEffect(() => {
-    if (isFetching) {
+    if (isFetching) { //הגבלת פוסטים בגלל הגבלה של 500 קריאות
       let currentHotelId = 1377074;
       let count = 0;
       intervalRef.current = setInterval(async () => {
@@ -85,7 +76,7 @@ function HomeScreen({ navigation }) {
   }, [isFetching]);
 
   const handleNewPost = (hotel) => {
-    navigation.navigate('NewPost', { // עדכון שם המסך לניווט נכון
+    navigation.navigate('NewPost', { 
       name: hotel.name,
       city: hotel.city,
       country: hotel.country

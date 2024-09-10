@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const TestPage = ({ navigation }) => {
 

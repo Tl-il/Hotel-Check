@@ -19,7 +19,7 @@ const UpdateProfileScreen = ({ navigation }) => {
   
   
   useEffect(() => {
-    // Fetch user data from Firebase upon component mount
+    // Fetch user data from Firebase
     async function fetchUserData() {
       try {
         

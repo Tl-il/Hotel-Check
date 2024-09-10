@@ -2,17 +2,13 @@ import React, { useState,useEffect } from "react";
 import { View,Text, ImageBackground, StyleSheet } from 'react-native'
 import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
-import AppPicker from '../component/AppPicker';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/storage'; // ה-import החדש
-import ImageInputList from "../component/Imagecompnent/ImageInputList";
 import colors from "../config/colors";
 import { addDoc, collection ,getFirestore } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
-import PickerItem from "../component/PickerItem";
 import Starrating from "react-native-star-rating";
-import ListingDetiailsScreen from "./ListingDetiailsScreen";
 
 
 

@@ -7,7 +7,6 @@ import colors from '../config/colors'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getFirestore, doc, setDoc } from 'firebase/firestore'; // Import Firestore
 import ImageInputList from '../component/Imagecompnent/ImageInputList';
-import { StoreUserData } from '../component/Firebase/UserData';
 
 export default function CreateNewAccuont({navigation}) {
 

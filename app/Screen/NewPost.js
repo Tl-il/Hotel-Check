@@ -10,18 +10,12 @@ import ImageInputList from "../component/Imagecompnent/ImageInputList";
 import colors from "../config/colors";
 import { addDoc, collection ,getFirestore } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
-import PickerItem from "../component/PickerItem";
 import StarRating from "react-native-star-rating";
-import ListingDetiailsScreen from "./ListingDetiailsScreen";
 import {loadSavedHotels} from '../utility/apiStronge';
 import { useFocusEffect } from '@react-navigation/native';
 
 
 
-// const hotels = [
-//   { label: 'Hotel A', value: 1 },
-//   { label: 'Hotel B', value: 2 },
-//   { label: 'Hotel C', value: 3 },]
 
 const NewPost = ({ navigation,route }) => {
     const [postRating, setPostRating] = useState('');
@@ -39,9 +33,9 @@ const NewPost = ({ navigation,route }) => {
 
     useEffect(() => {
         if (user) {
-            setUserName(user.displayName); // Assumes the displayName is set for the user
+            setUserName(user.displayName); 
             if (user.photoURL) {
-                setUserImage(user.photoURL); // Assumes the photoURL is set for the user
+                setUserImage(user.photoURL); 
             }
         }
     }, [user]);
@@ -59,10 +53,10 @@ const NewPost = ({ navigation,route }) => {
         fetchHotels();
     }, []);
 
-    // שימוש ב- useFocusEffect כדי לנקות נתונים כאשר הדף יוצא מפוקוס
+    // ניקוי נתונים מהדף ביציאה ממנו
     useFocusEffect(
         React.useCallback(() => {
-            // ניקוי כל הנתונים כאשר המסך יוצא מפוקוס
+            
             return () => {
                 setPostRating('');
                 setSelectedHotel(null);

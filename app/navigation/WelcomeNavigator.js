@@ -30,10 +30,10 @@ const WelcomeNavigator =()=> {
     useEffect(() => {
       const auth = getAuth();
       const subscriber = onAuthStateChanged(auth, onAuthStateChanged);
-      return subscriber; // unsubscribe on unmount
+      return subscriber; 
     }, []);
   
-    // if (initializing) return <TestPage />; //לבדוק בהמשך אם צריך את הדף הזה?!  
+     
 
     return(
         <Stack.Navigator screenOptions={{headerShown:false}} >

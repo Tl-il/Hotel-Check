@@ -14,12 +14,12 @@ function HomeScreen({ navigation }) {
 
   const saveHotelData = async (hotelData) => {
     const hotel = {
-      id: hotelData.summary.id,  // מזהה המלון
-      name: hotelData.summary.name,  // שם המלון
-      image: hotelData.propertyGallery?.images?.[0]?.image?.url || '',  // תמונת המלון
-      country: hotelData.summary.location?.address?.countryCode || 'Unknown',  // קוד המדינה
-      city: hotelData.summary.location?.address?.city || 'Unknown',  // עיר
-      rating: hotelData.reviewInfo.summary?.overallScoreWithDescriptionA11y?.value || '4.0',  // דירוג הכוכבים (אם קיים)
+      id: hotelData.summary.id,  
+      name: hotelData.summary.name,  
+      image: hotelData.propertyGallery?.images?.[0]?.image?.url || '',  
+      country: hotelData.summary.location?.address?.countryCode || 'Unknown',
+      city: hotelData.summary.location?.address?.city || 'Unknown',  
+      rating: hotelData.reviewInfo.summary?.overallScoreWithDescriptionA11y?.value || '4.0',  
     };
 
     setHotels(prevHotels => {
@@ -35,20 +35,20 @@ function HomeScreen({ navigation }) {
 
   const onRefresh = async () => {
     setRefreshing(true);
-    await clearHotelsFromStorage(); // נקה את הנתונים הקיימים באחסון
+    await clearHotelsFromStorage();  
     setHotels([]);
     setRefreshing(false);
-    setIsFetching(true); // התחל מחדש את הבאת הנתונים
+    setIsFetching(true); 
   };
 
   useEffect(() => {
     const loadSavedHotelsFromStorage = async () => {
       const savedHotels = await loadSavedHotels();
-      const validHotels = savedHotels.filter(hotel => hotel.id && hotel.name); // וודא שהמלון תקין
+      const validHotels = savedHotels.filter(hotel => hotel.id && hotel.name); 
       setHotels(validHotels);
     };
 
-    loadSavedHotelsFromStorage(); // טען מלונות שמורים בעת טעינת המסך
+    loadSavedHotelsFromStorage(); 
   }, []);
 
   useEffect(() => {
@@ -58,9 +58,9 @@ function HomeScreen({ navigation }) {
       intervalRef.current = setInterval(async () => {
         if (count < 6) {
           try {
-            const hotelData = await fetchHotelData(currentHotelId); // הבאת נתוני המלון
+            const hotelData = await fetchHotelData(currentHotelId); 
             if (hotelData) {
-              await saveHotelData(hotelData); // שמור את נתוני המלון
+              await saveHotelData(hotelData); 
             }
           } catch (error) {
             console.error('Error fetching hotel data:', error);

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground,View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
 import { getAuth, updateProfile,signOut } from 'firebase/auth';
-import ImageInputList from '../component/Imagecompnent/ImageInputList'; // או כל רכיב אחר להעלאת תמונות
-import AppButton from '../component/Button/AppButton'; // רכיב כפתור
-import AppTextInput from '../component/AppTextInput'; // רכיב קלט טקסט
+import ImageInputList from '../component/Imagecompnent/ImageInputList'; 
+import AppButton from '../component/Button/AppButton'; 
+import AppTextInput from '../component/AppTextInput';
 import { getFirestore, doc, getDoc ,getStorage,update,updateDoc} from 'firebase/firestore';
 import AppText from '../component/AppText';
 

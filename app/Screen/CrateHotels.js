@@ -4,7 +4,7 @@ import AppButton from '../component/Button/AppButton'
 import AppTextInput from '../component/AppTextInput'
 import 'firebase/firestore';
 import 'firebase/auth';
-import 'firebase/storage'; // ה-import החדש
+import 'firebase/storage'; 
 import colors from "../config/colors";
 import { addDoc, collection ,getFirestore } from "firebase/firestore"; 
 import { getAuth } from "firebase/auth";
